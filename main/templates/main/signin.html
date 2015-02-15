@@ -27,71 +27,6 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	
-	<section id="intro" class="home-slide text-light">
-
-		<!-- Carousel -->
-    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
-			    <div class="item active">
-			    	<img src="{%static 'images/1.jpg'%}" alt="First slide">
-                    <!-- Static Header -->
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                            	<span>Welcome to freelancerKG</span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Work , Hire , Freelance join our big comunity.</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                                 <a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Hire</a><a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Work</a></div>
-                        </div>
-                    </div><!-- /header-text -->
-			    </div>
-			    <div class="item">
-			    	<img src="{%static 'images/2.jpg'%}" alt="Second slide">
-			    	<!-- Static Header -->
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                                <span>Welcome to freelancerKG</span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Work , Hire , Freelance join our big comunity.</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                                 <a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Hire</a><a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Work</a></div>
-                        </div>
-                    </div><!-- /header-text -->
-			    </div>
-			    <div class="item">
-			    	<img src="{%static 'images/3.jpg'%}" alt="Third slide">
-			    	<!-- Static Header -->
-                    <div class="header-text hidden-xs">
-                        <div class="col-md-12 text-center">
-                            <h2>
-                                <span>Welcome to freelancerKG</span>
-                            </h2>
-                            <br>
-                            <h3>
-                            	<span>Work , Hire , Freelance join our big comunity.</span>
-                            </h3>
-                            <br>
-                            <div class="">
-                                <a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Hire</a><a class="btn btn-theme btn-sm btn-min-block" href="{% url 'main:signin'%}">Work</a></div>
-                        </div>
-                    </div><!-- /header-text -->
-			    </div>
-			
-
-	</section>
-	<!-- /Section: intro -->
 	
 	
     <!-- Navigation -->
@@ -116,17 +51,9 @@
                                           </div>
                                                       <!-- Collect the nav links, forms, and other content for toggling -->
                                                       <div class="collapse navbar-collapse" id="menu">
-                                                      	{% if user.is_authenticated %}
                                                             <ul class="nav navbar-nav navbar-right">
-                                                                  <li class="active"><a href="">{{user.username}}</a></li>
-                                                                  <li><a href="{% url 'main:signout'%}">Log out</a></li>
+                                                                  <li class="active"><a href="{% url 'main:signup'%}">Sign up</a></li>
                                                             </ul>
-                                                        {% else %}
-                                                        	<ul class="nav navbar-nav navbar-right">
-                                                                  <li class="active"><a href="{% url 'main:signin'%}">Sign in</a></li>
-                                                                  <li><a href="#about">Sign up</a></li>
-                                                            </ul>
-                                                        {% endif%}
                                                       </div>
                                                       <!-- /.Navbar-collapse -->
                              
@@ -139,23 +66,38 @@
     <!-- /Navigation -->  
 
 	<!-- Section: about -->
-    <section id="about" class="home-section color-dark bg-white">
+    <section id="about" class="home-section color-dark bg-white
+    ">
 		<div class="container marginbot-50">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
+				<div class="col-lg-6 col-lg-offset-3">
 					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
 					<div class="section-heading text-center">
-					{% if user.is_authenticated %}
-					<h2 class="h-bold">{{user.first_name}}</h2>
+					<h2 class="h-bold">Log in</h2>
+					<hr>
 					<div class="divider-header"></div>
-					<p>You are fucking awsome guy {{user.last_name}}</p>
-					{% else %}
-					<h2 class="h-bold">Name</h2>
-					<div class="divider-header"></div>
-					<p>Some shitty information here</p>
-					{% endif%}
-
+					
 					</div>
+					<form action="" method="POST" role="form">
+					{% csrf_token %}
+						<div class="form-group">
+		                    <label for="username">user name:</label>
+		                    
+		                    <input type="text" class="form-control" id="username" name="username" placeholder="enter ur username here">
+		                    
+		                </div>
+		                <div class="form-group">
+		                    <label for="password">password:</label>
+		                    
+		                    <input type="text" class="form-control" name="password" id="password" placeholder="enter ur password here">
+		                    
+		                </div>
+		                <div class="span7 text-center">
+		                	<input type='submit' value='Login'  class="btn btn-primary btn-lg btn-block" role="button">
+		                </div>
+		                <br><br><hr><br><br><br><br>
+					</form>
+
 					</div>
 				</div>
 			</div>
@@ -395,7 +337,7 @@
 				<div class="col-md-6 col-md-offset-3">
 					
 					<div class="text-center">
-						<a href="#intro" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
+						<a href="#about" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
 
 						<p>Alamedin 1 Bishkek Chuy Kyrgyzstan<br />
 						&copy;Copyright 2015 - Freelancer. Designed by Ariet Nyshanbaev</p>
