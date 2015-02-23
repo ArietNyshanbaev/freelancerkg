@@ -26,14 +26,16 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,'templates'),
     os.path.join(BASE_DIR,'main','templates','main'),
+    os.path.join(BASE_DIR,'indacom','templates','indacom'),
 )
 
 ALLOWED_HOSTS = []
-
+#DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'home',
 )
 
 MIDDLEWARE_CLASSES = (

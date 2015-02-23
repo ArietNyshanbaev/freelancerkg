@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.models import User
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
@@ -7,7 +7,11 @@ from django.template import RequestContext
 
 
 def mainpage(request):
-	return render_to_response('main/mainpage.html',{},context_instance = RequestContext(request))
+	if request.user.is_authenticated():
+		return redirect(reverse("home:mainpage"))
+	else:
+		return render_to_response('main/mainpage.html',{},context_instance = RequestContext(request))
+	
 
 def signin(request):
 	args={}
@@ -20,7 +24,7 @@ def signin(request):
 			if user.is_active:
 				login(request, user)
 				args = {'user':user}
-				return render_to_response('main/thanks.html',args)
+				return redirect(reverse("home:mainpage"))
 			else:
 				return render_to_response('main/signup.html',args)
 		else:
@@ -60,6 +64,8 @@ def signup(request):
 
 	else:
 		return render_to_response('main/signup.html',args)
+
+
 
 	
 
