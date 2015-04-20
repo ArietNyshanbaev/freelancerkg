@@ -32,10 +32,6 @@ class Information(models.Model):
 	def __str__(self):
 		return self.user.first_name
 
-
-
-
-
 	FEMALE = 'F'
 	MALE = 'M'
 
@@ -52,7 +48,8 @@ class Information(models.Model):
 	born_date = models.DateField(default=datetime.now, blank=True)
 	phone_number = models.IntegerField()
 	address = models.CharField(max_length=200,default="Не указано")
-	#skills = models.ForeignKey(SkillofUser)
+	date = models.DateField(default = datetime.now)
+	category = models.ForeignKey(Category)
 
 
 class SkillofUser(models.Model):
@@ -61,26 +58,27 @@ class SkillofUser(models.Model):
 
 	skill = models.ForeignKey(Skill)
 
-	BEGINNER = 'BEG'
-	INTEMEDIATE = 'INM'
-	ADVANCED = 'ADV'
-	EXPERT = 'EXP'
-
-	LEVEL_CHOICE = (
-		(BEGINNER,'Beginner'),
-		(INTEMEDIATE,'Intermediate'),
-		(ADVANCED,'Advanced'),
-		(EXPERT,'Expert'),
-	)
-
-	level = models.CharField(max_length=3,
-								choices=LEVEL_CHOICE,
-								default=BEGINNER)
+	level = models.CharField(max_length=11)
 	user = models.ForeignKey(Information)
 
 	def __str__(self):
 		
-		return self.skill.title
+		return self.skill.title + ' ==> ' + self.user.user.username 
+
+
+class Job(models.Model):
+	title = models.CharField(max_length = 200)
+	description = models.TextField()
+	price = models.IntegerField()
+	period = models.CharField(max_length = 200)
+	category = models.ForeignKey(Category)
+	date = models.DateTimeField(default=datetime.now)
+	user = models.ForeignKey(User,default=None)
+
+	def __str__(self):
+		return self.title
+	
+		
 
 		
 

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FreelancerKg</title>
+    <title>JumuwBar.kg</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -47,23 +47,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home:mainpage' %}">FreelancerKg</a>
+                <a class="navbar-brand" href="{% url 'home:mainpage' %}">JumuwBar.kg</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{% url 'home:profile'%}">My profile</a>
+                    <li class="active">
+                        <a href="{% url 'home:profile'%}">мой профиль</a>
                     </li>
                     <li>
-                        <a href="">About</a>
+                        <a href="{%url 'home:list_jobs'%}">список работ</a>
                     </li>
                     <li>
-                        <a href="">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'main:signout'%}">Logout</a>
+                        <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
                     </li>
                 </ul>
             </div>
@@ -82,7 +79,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code biiitch.</span>
+                        <span class="subheading">Life is short , write good code.</span>
                     </div>
                 </div>
             </div>
@@ -94,30 +91,69 @@
 
 
     <div class="container">
+        {% if success_message %}
+        <div class="alert alert-success text-center" role="alert"><br>{{success_message}}<br><br></div>
+        {% endif %}
         <div class="row">
-            <div class="col-md-6">
-                <img height="400" width="400" class="images" src="../../media/{{user.information.image}}" alt='surot1'>
-            </div>
-            <div class="col-md-6">
-                <h2>Information:</h2>
-                <h3>Full name : {{user.first_name}} {{user.last_name}}</h3>
-                <h3>Gender : {{user.information.gender}}</h3>
-                <h3>Born date : {{user.information.born_date}}</h3>
-                <h3>Address: {{user.information.address}}</h3>
-                <h3>Phone number : {{user.information.phone_number}}</h3>
-                <h3>Email : {{user.email}}</h3>
-                <h3>Skills of user:</h3>
-                <ul>
-                   {% for skill in user.information.skillofuser_set.all%}
-                      <li>{{skill.skill.title}}</li>
+            <div class="col-md-4">
+            <br>
+                <img height="300" width="300" class="images" src="../../../media/{{user.information.image}}" alt='surot1'>
+                <p><strong>Вид деятельности: </strong>
+                   {{user.information.category.title}}
+                </p>
+                <p><strong>Навыки: </strong>
+                   {% for skill in user.information.skillofuser_set.all%} 
+                      <span class="label label-info tags">{{skill.skill.title}}</span> 
                    {%endfor%}
-                </ul>
-                <a href="{%url 'home:add_skill'%}" class="btn btn-success btn-xs" role="button">add skill</a>
+                </p>
+                
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <h2>{{user.first_name}} {{user.last_name}}</h2>
+                <p><strong>Пол </strong> : 
+                {% if user.information.gender == 'FEMALE'%}
+                Женский 
+                {% else %}
+                Мужской
+                {% endif %}
+                </p>
+                <p><strong>Дата рождения </strong> : {{user.information.born_date}}</p>
+                <p><strong>Адрес </strong> : {{user.information.address}}</p>
+                <p><strong>Номер телефона </strong> : {{user.information.phone_number}}</p>
+                <p><strong>Email </strong> : {{user.email}}</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4">
+            <a href="{%url 'home:modify_skills'%}" class="btn btn-success btn-xs" role="button">редактировать навыки</a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+            <span class='text-center'><a href="{% url 'home:modify_info'%}"><button type="button" class="btn btn-warning">редактировать профиль</button></a></span>
+            </div>
+        </div>
+        <br><br><hr>
     </div>
 
-
+    <!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -150,7 +186,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; JumuwBar.kg 2015. Ariet Nyshanbaev</p>
                 </div>
             </div>
         </div>
