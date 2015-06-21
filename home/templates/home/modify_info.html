@@ -53,11 +53,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
-                        <a href="{% url 'home:profile'%}">мой профиль</a>
+                     <li>
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{%url 'home:list_jobs'%}">список работ</a>
+                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
                     </li>
                     <li>
                         <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
@@ -79,7 +82,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code.</span>
+                        <span class="subheading">{{slogan}}</span>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,8 @@
 
     <!-- Custom CSS -->
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/list-workers.css' %}" rel="stylesheet">
+
     
 
     <!-- Custom Fonts -->
@@ -48,17 +50,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home:mainpage_hire' %}">JumuwBar.kg</a>
+                <a class="navbar-brand" href="{% url 'home:mainpage' %}">JumuwBar.kg</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
-                        <a href="{% url 'home:list_workers' %}">список пользователей</a>
+                     <li class="active">
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{% url 'home:my_projects'%}">мои проекты</a>
+                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
                     </li>
                     <li>
                         <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
@@ -80,7 +85,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code.</span>
+                        <span class="subheading">{{slogan}}</span>
                         <br><br>
                     </div>
                 </div>
@@ -92,38 +97,61 @@
     <!-- Main Content -->
     <div class="container">
         <row class="div">
-            <div class="col-md-4">
-                {% if this_category %}
-                    <h5><a href="{% url 'home:list_workers'%}">все пользователи</a></h5>
-                {% else %}
-                    <h5 style="color:green">все пользователи</h5>
-                {% endif %}
-                <h5 style="color:green">{{this_category}}</h5>
-                {% for category in categories %}
-                    <h5><a href="{% url 'home:list_workers' category.id%}">{{category.title}}</a></h5>
-                {% endfor %}
+            <div class="col-md-2">
             </div>
             <div class="col-md-8">
+                <div class="row text-center">
+                    {% if this_category %}
+                        <div class="col-md-3" style="background-color:yellow">
+                            <a href="{% url 'home:list_workers' this_category.id%}">
+                                <br>
+                                <img src="../../../media/{{this_category.icon}}" height="100" width="100">
+                                {{this_category.title}}
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% for category in categories %}
+                        <div class="col-md-3">
+                            <a href="{% url 'home:list_workers' category.id%}">
+                                <br>
+                                <img src="../../../media/{{category.icon}}" height="100" width="100">
+                                {{category.title}}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
             <div class="post-preview">
             {% if this_category %}
-            <h4>Список пользователей категории {{this_category.title}}</h4>
+                <br>
+                <h4 class="text-center">Список пользователей категории {{this_category.title}}</h4>
+                <br>
+                <hr>
             {% else %}
-            <h4>Список всех пользователей</h4>
+                <br>
+                <h4 class="text-center">Список всех пользователей</h4>
+                <br>
+                <hr>
             {% endif %}
-                
-                    {% for worker in workers %}
-                        <a href="{% url 'home:look_profile' '2' worker.pk %}">
-                            <h2 class="post-title">
-                                {{worker.user.first_name}} {{worker.user.last_name}}
-                            </h2>
-                            <h3 class="post-subtitle">
-                                {{worker.user.username}}
-                            </h3>
-                        </a>
-                    {% endfor %}
+                {% for worker in workers %}
+                    {% if worker %}
+                        <div class=' col-md-3 text-center'>
+                            <a href="{% url 'home:look_profile' '2' worker.pk %}">
+                                <img src="../../../media/{{worker.image}}" height="100" width="100">
+                                <h3 class="post-subtitle">
+                                    {{worker.user.first_name}}
+                                </h3>
+                                <h5 class="post-subtitle">
+                                    {{worker.category.title}}<br>
+                                    возраст: {{worker.age}}
+                                </h5>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
             <hr>  
             </div>
+            <div class="col-md-2"></div>
         </row>
     </div>
 

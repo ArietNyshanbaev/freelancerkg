@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,'templates'),
     os.path.join(BASE_DIR,'main','templates','main'),
-    os.path.join(BASE_DIR,'indacom','templates','indacom'),
+    os.path.join(BASE_DIR,'home','templates','home'),
 )
 
 ALLOWED_HOSTS = []

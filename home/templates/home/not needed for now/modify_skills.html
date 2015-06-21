@@ -1,0 +1,428 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JumuwBar.kg</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home:mainpage' %}">JumuwBar.kg</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                     <li>
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
+                    </li>
+                    <li>
+                        <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url( {% static 'images/home-bg.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{{user.first_name}}</h1>
+                        <hr class="small">
+                        <span class="subheading">{{slogan}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-">
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2> Мои навыки</h2>  
+            </div>
+            <div class="col-lg-9">
+                <table class="table table-hover">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>навык </th>
+                                <th>опыт</th>
+                                <th>уровень</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for skill in owned_skills_list %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter}}</th>
+                                <td>{{skill.skill.title}}</td>
+
+
+                                {% if skill.experience == 1 %}
+                                <td>{{skill.experience}} год</td>
+                                {% elif skill.experience < 5%}
+                                <td>{{skill.experience}} года</td>
+                                {% else %}
+                                <td>{{skill.experience}} лет</td>
+                                {% endif %}
+
+
+                                {% if skill.level == 'BEGINNER' %}
+                                <td>новичок</td>
+                                {% elif skill.level == 'INTERMEDIATE' %}
+                                <td>продвинутый</td>
+                                {% elif skill.level == 'ADVANCED' %}
+                                <td>опытный</td>
+                                {% elif skill.level == 'EXPERT' %}
+                                <td>эксперт</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor%}
+                        </tbody>
+                    </table>
+                </table>
+            </div>
+            <div class="col-lg-2">
+                <table class="table table-hover">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>редактировать</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for skill in owned_skills_list %}
+                            <tr>
+                                <td><span data-toggle="modal" data-target="#{{skill.id}}modify"><span style="cursor:pointer">редактировать</span></span></td>
+                            </tr>
+                        {% endfor%}
+                        </tbody>
+                    </table>
+                </table>
+            </div>
+            <div class="col-lg-1">
+                <table class="table table-hover">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>удалить</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for skill in owned_skills_list %}
+                            <tr>
+                                <td><span data-toggle="modal" data-target="#{{skill.id}}"><span style="cursor:pointer">удалить</span></span></td>
+                            </tr>
+                        {% endfor%}
+                        </tbody>
+                    </table>
+                </table>
+            </div>
+        </div>
+    </div>
+            
+
+   
+    <hr>
+
+<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-6" style="background-color:#ECE9E9;">
+                <h2 class="text-center">Добавить навык</h2>
+                {% for category in categories %}
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="{{category.id}}heading">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{category.id}}category" aria-expanded="false" aria-controls="#{{category.id}}category">
+                          <h3 style="color:#827F72">{{category.title}}:</h3>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="{{category.id}}category" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{category.id}}heading">
+                      <div class="panel-body">
+                        <table class="table table-striped">
+                            <table class="table table-striped">
+                                <tbody>
+                                {% for skill in category.skill_set.all %}
+                                    {% if skill not in owned_skills %}
+                                    <tr>
+                                        <td><span data-toggle="modal" data-target="#{{skill.id}}add"><span style="cursor:pointer">{{skill.title}} (добавить)</span></span></td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tbody>
+                            </table>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>   
+                {% endfor %}
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+   <!-- modal windows  -->
+   {% for skill in owned_skills_list %}
+    <div class="modal fade" id="{{skill.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Удалить {{skill.skill.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите удалить этот навык?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'home:delete_skill' skill.id %}"><button type="button" class="btn btn-primary">Удалить</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% for skill in owned_skills_list %}
+    <div class="modal fade" id="{{skill.id}}modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" action="{%url 'home:modify_skills' %}" method="POST" role="form">
+                {% csrf_token %} 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Редактировать {{skill.skill.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="experience">Стаж(в годах)</label>
+                    <input type="number" name="experience" value="{{skill.experience}}" id="experience" placeholder="" required><br>
+                    <label for="level">Выберите уровень</label>
+                    <select name="level" id='level'class="form-control">
+                        {% if skill.level == 'BEGINNER'%}
+                        <option value="BEGINNER" selected=""> новичок</option>
+                        <option value="INTERMEDIATE"><strong>продвинутый</strong></option>
+                        <option value="ADVANCED"><strong>опытный</strong></option>
+                        <option value="EXPERT"><strong>эксперт</strong></option>
+                        {% endif %}
+                        {% if skill.level == 'INTERMEDIATE'%}
+                        <option value="BEGINNER"> новичок</option>
+                        <option value="INTERMEDIATE" selected=""><strong>продвинутый</strong></option>
+                        <option value="ADVANCED"><strong>опытный</strong></option>
+                        <option value="EXPERT"><strong>эксперт</strong></option>
+                        {% endif %}
+                        {% if skill.level == 'ADVANCED'%}
+                        <option value="BEGINNER"> новичок</option>
+                        <option value="INTERMEDIATE"><strong>продвинутый</strong></option>
+                        <option value="ADVANCED" selected=""><strong>опытный</strong></option>
+                        <option value="EXPERT"><strong>эксперт</strong></option>
+                        {% endif %}
+                        {% if skill.level == 'EXPERT'%}
+                        <option value="BEGINNER"> новичок</option>
+                        <option value="INTERMEDIATE"><strong>продвинутый</strong></option>
+                        <option value="ADVANCED"><strong>опытный</strong></option>
+                        <option value="EXPERT" selected=""><strong>эксперт</strong></option>
+                        {% endif %}
+                    </select>
+                    <input type="hidden" name="skill" value="{{skill.id}}">
+                    <input type="hidden" name="action" value="modify">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                        <input type='submit' value='Редактировать'  class="btn btn-primary" role="button">
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of exit model page -->
+    {% for skill in all_skills %}
+    <div class="modal fade" id="{{skill.id}}add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" action="{%url 'home:modify_skills' %}" method="POST" role="form">
+                {% csrf_token %} 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Добавить {{skill.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="experience">Стаж(в годах)</label>
+                    <input type="number" name="experience" id="experience" placeholder="" required><br>
+                    <label for="level">Выберите уровень</label>
+                    <select name="level" id='level'class="form-control">
+                        <option value="BEGINNER" selected=""> новичок</option>
+                        <option value="INTERMEDIATE"><strong>продвинутый</strong></option>
+                        <option value="ADVANCED"><strong>опытный</strong></option>
+                        <option value="EXPERT"><strong>эксперт</strong></option>
+                    </select>
+                    <input type="hidden" name="skill" value="{{skill.id}}">
+                    <input type="hidden" name="action" value="add">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                        <input type='submit' value='Добавить'  class="btn btn-primary" role="button">
+                    </div>
+                </div>
+            </form>
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- end of modal windows  -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; JumuwBar.kg 2015. Ariet Nyshanbaev</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+
+    
+    
+
+</body>
+
+</html>

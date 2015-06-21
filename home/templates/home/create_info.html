@@ -73,7 +73,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code.</span>
+                        <span class="subheading">{{slogan}}</span>
                     </div>
                 </div>
             </div>
@@ -99,20 +99,15 @@
                     <form action="{% url 'home:create_info'%}" method="POST" role="form">
                     {% csrf_token %}
                         <div class="form-group">
-                            <label for="born">Дата рождения</label>
+                            <label for="born">Дата рождения * :</label>
                             <input type="date" class="form-control" name="born" required id="born" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="number">Номер телефона</label>
+                            <label for="number">Номер телефона * :</label>
                             <input type="tel" class="form-control" name="number" id="number" placeholder="введите номер телефона" required>
                         </div>
-
-                        <div class="form-group">
-                            <label for="address">Адрес:</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="введите ваш адрес" required>
-                        </div>
-
+                        
                         <div class="form-group">
                             <label for="gender">Пол:</label><br>
                             <input type="radio"  value = 'MALE' name="gender" checked="" >Мужской<br>
@@ -120,7 +115,7 @@
                         </div>
 
                         <div class="form-group">
-                        <label for="gender">Вид деятельности:</label><br>
+                        <label for="gender">Вид деятельности * :</label><br>
                             <select required name="category" class="form-control">
                                 <option value="" disabled selected="">Не выбрано</option>
                                 {% for category in categories %}
@@ -131,7 +126,7 @@
 
                         <div class="form-group">
                             <label for="image">Фото:</label>
-                            <input type="file" class="form-control" name="image" id="image" required>
+                            <input type="file" class="form-control" name="image" id="image">
                         </div>
                         
                         <div class="span7 text-center">

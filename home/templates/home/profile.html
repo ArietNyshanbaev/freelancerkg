@@ -53,11 +53,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
-                        <a href="{% url 'home:profile'%}">мой профиль</a>
+                     <li>
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{%url 'home:list_jobs'%}">список работ</a>
+                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
                     </li>
                     <li>
                         <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
@@ -79,7 +82,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code.</span>
+                        <span class="subheading">{{slogan}}</span>
                     </div>
                 </div>
             </div>
@@ -95,21 +98,22 @@
         <div class="alert alert-success text-center" role="alert"><br>{{success_message}}<br><br></div>
         {% endif %}
         <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-4">
             <br>
-                <img height="300" width="300" class="images" src="../../../media/{{user.information.image}}" alt='surot1'>
-                <p><strong>Вид деятельности: </strong>
-                   {{user.information.category.title}}
-                </p>
-                <p><strong>Навыки: </strong>
-                   {% for skill in user.information.skillofuser_set.all%} 
-                      <span class="label label-info tags">{{skill.skill.title}}</span> 
-                   {%endfor%}
-                </p>
+                {% if user.information.image %}
+                    <img height="300" width="300" class="images" src="../../../media/{{user.information.image}}" alt='profile_photo'>
+                {% else %}
+                    {% if user.information.gender == 'FEMALE'%}
+                        <img height="300" width="300" class="images" src="{%static 'images/female_placeholder.jpeg'%}" alt='profile_photo'>
+                    {% else %}
+                        <img height="300" width="300" class="images" src="{%static 'images/male_placeholder.jpg'%}" alt='profile_photo'>
+                    {% endif %}
+                {% endif %}
+                
                 
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h2>{{user.first_name}} {{user.last_name}}</h2>
                 <p><strong>Пол </strong> : 
                 {% if user.information.gender == 'FEMALE'%}
@@ -119,19 +123,23 @@
                 {% endif %}
                 </p>
                 <p><strong>Дата рождения </strong> : {{user.information.born_date}}</p>
-                <p><strong>Адрес </strong> : {{user.information.address}}</p>
                 <p><strong>Номер телефона </strong> : {{user.information.phone_number}}</p>
                 <p><strong>Email </strong> : {{user.email}}</p>
             </div>
+            <div class="col-md-2">
+            </div>
         </div>
+        <br>
         <div class="row">
+            <div class="col-md-2">
+            </div>
             <div class="col-md-4">
-            <a href="{%url 'home:modify_skills'%}" class="btn btn-success btn-xs" role="button">редактировать навыки</a>
+            <span class='text-center'><a href="{% url 'home:modify_info'%}"><button type="button" class="btn btn-block btn-warning">редактировать профиль</button></a></span>
+            </div>
+            <div class="col-md-4">
+            <span class='text-center'><a href="{% url 'home:change_password'%}"><button type="button" class="btn btn-block btn-danger"> сменить пароль </button></a></span>
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-6">
-            <span class='text-center'><a href="{% url 'home:modify_info'%}"><button type="button" class="btn btn-warning">редактировать профиль</button></a></span>
-            </div>
         </div>
         <br><br><hr>
     </div>

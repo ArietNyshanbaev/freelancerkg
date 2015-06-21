@@ -38,9 +38,21 @@
                     <!-- Static Header -->
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
-                            <h2>
-                            	<span>JumuwBar</span>
-                            </h2>
+	                    {% if success_message %}
+							<div class="alert alert-success alert-dismissible" role="alert">
+							<br>
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							  <strong>{{success_message}}</strong>
+							<br>
+							<br>
+							</div>
+						{% endif %}
+							<div class="row">
+								<div class="col-md-6 col-md-offset-4">
+									<img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+								</div>
+							</div>
+							
                             <br>
                             <h3>
                             	<span>Работай, Нанимай , Присоединяйся к лучшим.</span>
@@ -56,9 +68,11 @@
 			    	<!-- Static Header -->
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
-                            <h2>
-                                <span>JumuwBar</span>
-                            </h2>
+                            <div class="row">
+								<div class="col-md-6 col-md-offset-4">
+									<img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+								</div>
+							</div>
                             <br>
                             <h3>
                             	<span>Работай, Нанимай , Присоединяйся к лучшим.</span>
@@ -74,9 +88,11 @@
 			    	<!-- Static Header -->
                     <div class="header-text hidden-xs">
                         <div class="col-md-12 text-center">
-                            <h2>
-                                <span>JumuwBar</span>
-                            </h2>
+                            <div class="row">
+								<div class="col-md-6 col-md-offset-4">
+									<img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+								</div>
+							</div>
                             <br>
                             <h3>
                             	<span>Работай, Нанимай , Присоединяйся к лучшим.</span>
@@ -100,7 +116,7 @@
                                     <div class="row">
                                           <div class="col-md-2">
                                                    <div class="site-logo">
-                                                            <a href="{% url 'main:mainpage'%}" class="brand">JumuwBar.Kg</a>
+                                                            <a href="{% url 'main:mainpage'%}" class="brand">JumushBar.Kg</a>
                                                     </div>
                                           </div>
                                           
@@ -140,7 +156,7 @@
 					<div class="section-heading text-center">
 					<h2 class="h-bold">Статистика</h2>
 					<div class="divider-header"></div>
-					<p>Статистика <strong>JumuwBar</strong> за этот месяц</p>
+					<p>Статистика <strong>JumushBar</strong> за этот месяц</p>
 					</div>
 					</div>
 				</div>
@@ -197,9 +213,9 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
 					<div class="section-heading text-center">
-					<h2 class="h-bold">Services</h2>
+					<h2 class="h-bold">Топ категории работников</h2>
 					<div class="divider-header"></div>
-					<p>Big stock of professional freelancers here.</p>
+					<p>Лучшие профессионалы обитают здесь</p>
 					</div>
 					</div>
 				</div>
@@ -344,22 +360,23 @@
 
 			<div class="row marginbot-80">
 				<div class="col-md-8 col-md-offset-2">
-						<form id="contact-form" class="wow bounceInUp" data-wow-offset="10" data-wow-delay="0.2s">
+						<form id="contact-form" action="" method="post" role="form" class="wow bounceInUp" data-wow-offset="10" data-wow-delay="0.2s">
+						{% csrf_token %}
 						<div class="row marginbot-20">
 							<div class="col-md-6 xs-marginbot-20">
-								<input type="text" class="form-control input-lg" id="name" placeholder="введите имя" required="required" />
+								<input type="text" class="form-control input-lg" id="name" name="name" placeholder="введите имя" required />
 							</div>
 							<div class="col-md-6">
-								<input type="email" class="form-control input-lg" id="email" placeholder="введите email" required="required" />
+								<input type="email" class="form-control input-lg" id="email" name="email" placeholder="введите email" required/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-										<input type="text" class="form-control input-lg" id="subject" placeholder="Тема" required="required" />
+										<input type="text" class="form-control input-lg" id="subject" name="subject" placeholder="Тема" required />
 								</div>
 								<div class="form-group">
-									<textarea name="message" id="message" class="form-control" rows="4" cols="25" required="required"
+									<textarea name="message" id="message" class="form-control" rows="4" cols="25" required
 										placeholder="Сообщение"></textarea>
 								</div>						
 								<button type="submit" class="btn btn-skin btn-lg btn-block" id="btnContactUs">
@@ -385,7 +402,7 @@
 						<a href="#intro" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
 
 						<p><br />
-						&copy;Copyright 2015 - JumuwBar. Ariet Nyshanbaev</p>
+						&copy;Copyright 2015 - JumushBar. Ariet Nyshanbaev</p>
 					</div>
 				</div>
 			</div>	

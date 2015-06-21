@@ -4,12 +4,28 @@ from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
+from home.models import Mail
 
 def mainpage(request):
+	#init variables
+	args={}
+	args.update(csrf(request))
+
 	if request.user.is_authenticated():
 		return redirect(reverse("home:mainpage"))
 	else:
-		return render_to_response('main/mainpage.html',{})
+		if request.POST:
+			name = request.POST['name']
+			email = request.POST['email']
+			subject = request.POST['subject']
+			message = request.POST['message']
+
+			mail = Mail.objects.create(name=name, email=email, title=subject, body=message)
+			mail.save()
+			args['success_message'] = "Ваше сообщение успешно отправлено."
+			return render_to_response('main/mainpage.html',args)
+		else:
+			return render_to_response('main/mainpage.html',args)
 
 def signin(request):
 	if request.user.is_authenticated():

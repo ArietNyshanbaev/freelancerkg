@@ -47,17 +47,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home:mainpage_hire' %}">JumuwBar.kg</a>
+                <a class="navbar-brand" href="{% url 'home:mainpage' %}">JumuwBar.kg</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{% url 'home:list_workers' %}">список пользователей</a>
+                     <li class="active">
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{% url 'home:my_projects'%}">мои проекты</a>
+                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
                     </li>
                     <li>
                         <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
@@ -79,7 +82,7 @@
                     <div class="site-heading">
                         <h1>{{user.first_name}}</h1>
                         <hr class="small">
-                        <span class="subheading">Life is short , write good code.</span>
+                        <span class="subheading">{{slogan}}</span>
                     </div>
                 </div>
             </div>
@@ -99,8 +102,8 @@
                    {{worker.information.category.title}}
                 </p>
                 <p><strong>Навыки: </strong>
-                   {% for skill in worker.information.skillofuser_set.all%} 
-                      <span class="label label-info tags">{{skill.skill.title}}</span> 
+                   {% for skill in worker.information.skillofuser_set.all %}
+                      <span class="label label-info tags">{{ skill.skill.title }}</span>
                    {%endfor%}
                 </p>
                 
@@ -108,15 +111,14 @@
             <div class="col-md-2"></div>
             <div class="col-md-6">
                 <h2>{{worker.first_name}} {{worker.last_name}}</h2>
-                <p><strong>Пол </strong> : 
+                <p><strong>Пол </strong> :
                 {% if worker.information.gender == 'FEMALE'%}
-                Женский 
+                Женский
                 {% else %}
                 Мужской
                 {% endif %}
                 </p>
                 <p><strong>Дата рождения </strong> : {{worker.information.born_date}}</p>
-                <p><strong>Адрес </strong> : {{worker.information.address}}</p>
                 <p><strong>Номер телефона </strong> : {{worker.information.phone_number}}</p>
                 <p><strong>Email </strong> : {{worker.email}}</p>
             </div>
@@ -130,7 +132,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>навык </th>
+                                <th>навык</th>
                                 <th>опыт</th>
                                 <th>уровень</th>
                             </tr>
@@ -140,8 +142,6 @@
                             <tr>
                                 <th scope="row">{{ forloop.counter}}</th>
                                 <td>{{skill.skill.title}}</td>
-
-
                                 {% if skill.experience == 1 %}
                                 <td>{{skill.experience}} год</td>
                                 {% elif skill.experience < 5%}
@@ -151,15 +151,9 @@
                                 {% endif %}
 
 
-                                {% if skill.level == 'BEGINNER' %}
-                                <td>новичок</td>
-                                {% elif skill.level == 'INTERMEDIATE' %}
-                                <td>продвинутый</td>
-                                {% elif skill.level == 'ADVANCED' %}
-                                <td>опытный</td>
-                                {% elif skill.level == 'EXPERT' %}
-                                <td>эксперт</td>
-                                {% endif %}
+                                
+                                <td>{{ skill.level}}</td>
+                                
                             </tr>
                         {% endfor%}
                         </tbody>
