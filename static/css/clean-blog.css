@@ -10,6 +10,19 @@ body {
   color: #404040;
 }
 
+#addjob_btn{
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-right: 15px;
+}
+
+#addjob_btn:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
 .btn-min-block {
     min-width: 170px;
     line-height: 26px;
