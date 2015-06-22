@@ -272,19 +272,18 @@ def list_jobs(request, category_id=-1):
 	# if category is choosed
 	
 
-@login_required(login_url=reverse('main:signin'))
+
 def job_info(request,job_id):
 	#init variables
 	args = {}
 	slogans = Slogan.objects.all()
-	if hasattr(request.user, 'information'):
-		job = get_object_or_404(Job, pk=job_id)
-		args['job'] = job
-		args['slogan'] = slogans[randint(0,slogans.count()-1)]
-		args['user'] = request.user
-		return render_to_response('home/job_info.html',args)
-	#if user hase not registered yet
-	return redirect(reverse('home:create_info'))
+	
+	job = get_object_or_404(Job, pk=job_id)
+	args['job'] = job
+	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	args['user'] = request.user
+	return render_to_response('home/job_info.html',args)
+	
 
 @login_required(login_url=reverse('main:signin'))
 def list_workers(request,category_id = -1):
