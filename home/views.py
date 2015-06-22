@@ -283,7 +283,6 @@ def job_info(request,job_id):
 	args['slogan'] = slogans[randint(0,slogans.count()-1)]
 	args['user'] = request.user
 	return render_to_response('home/job_info.html',args)
-	
 
 @login_required(login_url=reverse('main:signin'))
 def list_workers(request,category_id = -1):
