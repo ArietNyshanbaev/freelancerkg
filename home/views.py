@@ -15,38 +15,38 @@ from .models import Information , SkillofUser , Skill , Category , Job, Slogan
 
 
 # Views
-@login_required(login_url=reverse('main:signin'))
+# @login_required(login_url=reverse('main:signin'))
 def mainpage(request):
 	#initialize variables
 	args={}
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
 	#if user have complated registration
-	if hasattr(request.user, 'information'):
+	#if hasattr(request.user, 'information'):
 
-		if request.POST:
-			title = request.POST.get('title','')
-			description = request.POST.get('description','')
-			price = request.POST.get('price','')
-			category = request.POST.get('category','')
-			address = request.POST.get('address','')
+	if request.POST:
+		title = request.POST.get('title','')
+		description = request.POST.get('description','')
+		price = request.POST.get('price','')
+		category = request.POST.get('category','')
+		address = request.POST.get('address','')
 
-			user = request.user
+		user = request.user
 
-			category = get_object_or_404(Category, pk=category)
-			new_job = Job.objects.create(title = title, description = description, price = price, category = category, user = user, address=address)
-			new_job.save()
-			return redirect(reverse('home:mainpage'))
+		category = get_object_or_404(Category, pk=category)
+		new_job = Job.objects.create(title = title, description = description, price = price, category = category, user = user, address=address)
+		new_job.save()
+		return redirect(reverse('home:mainpage'))
 
-		else:
-			args["user"] = request.user
-			args['categories'] = Category.objects.all()
-			last_jobs = Job.objects.all().order_by('-date')[:15]
-			args['last_jobs'] = last_jobs
-			args['slogan'] = slogans[randint(0,slogans.count()-1)]
-			return render_to_response('home/mainpage.html',args)
+	else:
+		args["user"] = request.user
+		args['categories'] = Category.objects.all()
+		last_jobs = Job.objects.all().order_by('-date')[:15]
+		args['last_jobs'] = last_jobs
+		args['slogan'] = slogans[randint(0,slogans.count()-1)]
+		return render_to_response('home/mainpage.html',args)
 	#if user have not complated registration return him to complate registration page
-	return redirect(reverse('home:create_info'))
+	#return redirect(reverse('home:create_info'))
 
 @login_required(login_url=reverse('main:signin'))
 def profile(request):
