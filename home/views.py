@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Information , SkillofUser , Skill , Category , Job, Slogan
+from .models import Information , SkillofUser , Skill , Category , Job, Slogan,Order
 
 
 # Views
@@ -25,29 +25,24 @@ def mainpage(request):
 	#if hasattr(request.user, 'information'):
 
 	if request.POST:
-		title = request.POST.get('title','')
-		description = request.POST.get('description','')
-		price = request.POST.get('price','')
-		category = request.POST.get('category','')
-		address = request.POST.get('address','')
-
-		user = request.user
+		name = request.POST.get('name', '')
+		telephone = request.POST.get('telephone', '')
+		category = request.POST.get('category', '')
+		date_of_order = request.POST.get('date_order', '')
+		job_description = request.POST.get('description', '')
+		address = request.POST.get('address', '')
 
 		category = get_object_or_404(Category, pk=category)
-		new_job = Job.objects.create(title = title, description = description, price = price, category = category, user = user, address=address)
-		new_job.save()
-		return redirect(reverse('home:mainpage'))
+		new_order = Order.objects.create(name = name, job_description = job_description, telephone = telephone, category = category, date_of_order = date_of_order, address=address)
+		new_order.save()
+		args["success_message"] = "ваша заявка принята , наши операторы свяжутся с вами в течении 5 минут"
+		
 
-	else:
-		args["user"] = request.user
-		args['categories'] = Category.objects.all()
-		last_jobs = Job.objects.all().order_by('-date')[:15]
-		args['last_jobs'] = last_jobs
-		args['slogan'] = slogans[randint(0,slogans.count()-1)]
-		return render_to_response('home/mainpage.html',args)
-	#if user have not complated registration return him to complate registration page
-	#return redirect(reverse('home:create_info'))
-
+	# the method is get
+	args['categories'] = Category.objects.all()
+	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	return render_to_response('home/mainpage.html',args)
+"""
 @login_required(login_url=reverse('main:signin'))
 def profile(request):
 	#init variables
@@ -60,7 +55,8 @@ def profile(request):
 		return render_to_response('home/profile.html',args)
 	else:
 		return redirect(reverse('home:create_info'))
-
+"""
+"""
 @login_required(login_url=reverse('main:signin'))
 def create_info(request):
 	#initialize variables
@@ -89,7 +85,8 @@ def create_info(request):
 		args['slogan'] = slogans[randint(0,slogans.count()-1)]
 
 		return render_to_response('home/create_info.html',args)
-
+"""
+"""
 @login_required(login_url=reverse('main:signin'))
 def modify_info(request):
 	#initialize variables
@@ -283,50 +280,50 @@ def job_info(request,job_id):
 	args['slogan'] = slogans[randint(0,slogans.count()-1)]
 	args['user'] = request.user
 	return render_to_response('home/job_info.html',args)
+"""
 
-@login_required(login_url=reverse('main:signin'))
+#@login_required(login_url=reverse('main:signin'))
 def list_workers(request,category_id = -1):
 	#init of variables
 	args = {}
 	slogans = Slogan.objects.all()
-	if hasattr(request.user, 'information'):
-		if int(category_id) > 0:
-			category = get_object_or_404(Category, pk=category_id)
-			args['workers'] = Information.objects.filter(category = category)
-			categories = Category.objects.all().exclude(pk = category_id).order_by('title')
-			args['this_category'] = category
-		else:
-			args['workers'] = Information.objects.all()
-			categories = Category.objects.all().order_by('title')
+	args.update(csrf(request))
+	#if hasattr(request.user, 'information'):
+	if int(category_id) > 0:
+		category = get_object_or_404(Category, pk=category_id)
+		args['workers'] = Information.objects.filter(category = category).filter(stuff=True)
+		categories = Category.objects.all().order_by('title')
+		args['this_category'] = category
+	else:
+		args['workers'] = Information.objects.all().filter(stuff=True)
+		categories = Category.objects.all().order_by('title')
 
-		args['categories'] = categories
-		args['slogan'] = slogans[randint(0,slogans.count()-1)]
-		args['user'] = request.user
-		return render_to_response('home/list_workers.html',args)
+	args['categories'] = categories
+	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	args['user'] = request.user
+	return render_to_response('home/list_workers.html',args)
 	#if user hase not registered yet
-	return redirect(reverse('home:create_info'))
+	#return redirect(reverse('home:create_info'))
 
-@login_required(login_url=reverse('main:signin'))
 def look_profile(request, key, worker_id):
 	#init variables
 	args={}
 	slogans = Slogan.objects.all()
-	#if user have complated registration
-	if hasattr(request.user, 'information'):
-		args['user'] = request.user
-		worker = get_object_or_404(Information, pk=worker_id)
-		worker = worker.user
-		args['worker'] = worker
-		args['slogan'] = slogans[randint(0,slogans.count()-1)]
-		if int(key) == 1:
-			return render_to_response('home/look_profile_work.html',args)
 
-		owned_skills = worker.information.skillofuser_set.all().order_by('-experience')
-		args['user_skills'] = owned_skills
-		return render_to_response('home/look_profile_hire.html',args)
-	#if user have not complated registration
-	return redirect(reverse('home:create_info'))
+	
+	args['user'] = request.user
+	worker = get_object_or_404(Information, pk=worker_id)
+	worker = worker.user
+	args['worker'] = worker
+	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	if int(key) == 1:
+		return render_to_response('home/look_profile_work.html',args)
 
+	owned_skills = worker.information.skillofuser_set.all().order_by('-experience')
+	args['user_skills'] = owned_skills
+	return render_to_response('home/look_profile_hire.html',args)
+
+"""
 @login_required(login_url=reverse('main:signin'))
 def mainpage_hire(request):
 	args = {}
@@ -404,6 +401,7 @@ def delete_job(request, job_id):
 		job.delete()
 
 	return redirect(reverse('home:my_projects'))
+"""
 
 	
 

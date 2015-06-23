@@ -26,7 +26,7 @@ def mainpage(request):
 			return render_to_response('main/mainpage.html',args)
 		else:
 			return render_to_response('main/mainpage.html',args)
-
+"""
 def signin(request):
 	if request.user.is_authenticated():
 		return redirect(reverse("home:mainpage"))
@@ -130,3 +130,4 @@ def signup(request):
 
 	else:
 		return render_to_response('main/signup.html',args)
+"""
