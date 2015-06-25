@@ -39,7 +39,7 @@ def mainpage(request):
 		new_order.save()
 		# dealing with sms
 		args["success_message"] = "ваша заявка принята , наши операторы свяжутся с вами в течении 5 минут"
-		message += '\nname:' + str(name) + '\n telephone:' + str(telephone) + '\n date:' + str(date_of_order) 
+		message += '\nname:' + str(name.encode('utf-8')) + '\n telephone:' + str(telephone.encode('utf-8')) + '\n date:' + str(date_of_order.encode('utf-8'))
 		sms_url = 'http://smsc.ru/sys/send.php?login=traktorist221&psw=smsc120701&phones=996556606737&mes='
 		sms_url += message
 		r = requests.get(sms_url) 
