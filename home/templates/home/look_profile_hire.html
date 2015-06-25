@@ -53,17 +53,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                     <li class="active">
-                        <a href="{% url 'home:list_workers'%}">исполнители</a>
+                     <li>
+                        <a href="{% url 'home:list_workers'%}">персонал</a>
                     </li>
                     <li>
-                        <a href="{%url 'home:list_jobs'%}">все задания</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
-                    </li>
-                    <li>
-                        <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
+                        <a href="{% url 'main:mainpage'%}">о нас</a>
                     </li>
                 </ul>
             </div>
@@ -80,7 +74,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>{{user.first_name}}</h1>
+                        <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
                         <hr class="small">
                         <span class="subheading">{{slogan}}</span>
                     </div>
@@ -177,7 +171,7 @@
                 <h4>вы уверены что хотите выйти?</h4>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                    <a href=""><button type="button" class="btn btn-primary">Выйти</button></a>
                 </div>
             </div>
         </div>
@@ -185,39 +179,9 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; JumuwBar.kg 2015. Ariet Nyshanbaev</p>
-                </div>
-            </div>
+    <footer style="background-color:gray">
+        <div  class="container text-center">
+            <p style="color:white">© 2015 JumushBar.kg</p>
         </div>
     </footer>
 

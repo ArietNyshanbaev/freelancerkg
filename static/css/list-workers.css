@@ -2,13 +2,13 @@
 
 
 .bordered{
-    border: 2px solid white;
+    border: 2px solid gray;
     border-radius: 10px;
     margin: 2px;
 }
-#main
- a:hover{
-    color: #DCFA00;
+ a:hover .bordered{
+ 	border: 2px solid #FF6600;
+    color: #FF6600;
     text-decoration: none;
     opacity: .9;
 }

@@ -17,6 +17,11 @@
 
     <!-- Custom CSS -->
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/normailze-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/demo-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/component-input.css' %}" rel="stylesheet">
+
     
 
     <!-- Custom Fonts -->
@@ -55,17 +60,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{% url 'home:list_workers'%}">исполнители</a>
+                        <a href="{% url 'home:list_workers'%}">персонал</a>
                     </li>
                     <li>
-                        <a href="{%url 'home:list_jobs'%}">все задания</a>
+                        <a href="{% url 'main:mainpage'%}">о нас</a>
                     </li>
-                    <li>
-                        <a href="{% url 'home:profile'%}">{{user.username}}</a>
-                    </li>
+                    <!--
                     <li>
                         <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
                     </li>
+                    -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -81,13 +85,11 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>{{user.first_name}}</h1>
+                            <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
                         <hr class="small">
                         <span class="subheading">{{slogan}}</span>
                         <br><br>
-                        <div class="">
-                                <button id="addjob_btn" data-toggle="modal" data-target="#add_job" type="button" class="btn btn-theme btn-sm btn-min-block"><span style="cursor:pointer">создать задание</span></button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -101,28 +103,7 @@
         </div>
             <div class="col-md-6">
                 <div class="post-preview">
-                    <h3>Список последних добавленных работ</h3>
-                        {% for job in last_jobs%}
-                        <a href="{% url 'home:job_info' job.id%}">
-                            <h2 class="post-title">
-                                {{job.title}}
-                            </h2>
-                            <h3 class="post-subtitle">
-                                {{job.description|truncatechars:25}}
-                            </h3>
-                            <h3 class="post-subtitle">
-                            цена:
-                                {% if job.price%}
-                                    {{job.price}} сом 
-                                {% else %}
-                                     договорная
-                                {% endif %}
-                            </h3>
-                        </a>
-                        <p class="post-meta">пользователь: <a href="{% url 'home:look_profile' '1' job.user.pk%}">{{job.user}}</a> {{job.date}}</p>
-                        {% endfor%}
-                        <a href="{% url 'home:list_jobs'%}"><button type="button" class="btn btn-default">посмотреть все доступные работы</button></a>
-                    
+
                 </div>
                 <hr>
             </div> 
@@ -131,8 +112,81 @@
     </div>
 
     <hr>
-
-    <!-- Exit  model page -->
+    <div class="container text-center">
+        {% if success_message%}
+            <div class="alert alert-success text-center" role="alert">
+            <br>
+            <h5>{{success_message}}</h5>
+            <br>
+            </div>
+        {% endif %}
+        <h3>
+        Позвоните по номеру <strong><span style="color:#32CD32"> 0551344462 </span></strong>чтобы оставить заявку<hr>
+        или
+        <hr>
+        Заполните форму и мы вам перезвоним в течение 5 минут</h3>
+        <form id="order-form" action="" method="post" role="form">
+            {% csrf_token %}
+        
+            <section class="content text-center">
+                <span class="input input--minoru">
+                    <input class="input__field input__field--minoru" name="name" type="text" id="input-13" required/>
+                    <label class="input__label input__label--minoru" for="input-13">
+                        <h4>Имя заказчика</h4>
+                    </label>
+                </span>
+                <span class="input input--minoru">
+                    <input class="input__field input__field--minoru" name="telephone" type="text" id="input-14" required/>
+                    <label class="input__label input__label--minoru" for="input-14">
+                        <h4>Номер телефона</h4>
+                    </label>
+                </span>
+                <span class="input input--minoru">
+                    <select class="input__field input__field--minoru" name="category" id="input-15" required>
+                        <option disabled selected="" value="1">Не выбрано</option>
+                        {% for category in categories %}
+                            <option value="{{category.pk}}">{{category.title}}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="input__label input__label--minoru" for="input-15">
+                        <h4>Мне нужен</h4>
+                    </label>
+                </span>
+                <span class="input input--minoru">
+                    <input class="input__field input__field--minoru" name="date_order" type="text" id="input-17" placeholder="например: 31.05.2015 в 16:40" />
+                    <label class="input__label input__label--minoru" for="input-17">
+                        <h4>Примерное время </h4>
+                    </label>
+                </span>
+                <span class="input input--minoru">
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="description" rows="6" placeholder="например: Нужен сантехник чтобы установить стиральную машину "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Описание работы</h4>
+                    </label>
+                </span>
+                <span class="input input--minoru">
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="address" rows="6" placeholder="например: Восток-5, Дом 27,Квартира 64 "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Адрес заказчика</h4>
+                    </label>
+                </span>
+            </section>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <input class="btn btn-block btn-sm btn-success" value="отправить заявку" type="submit">
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </form>
+    </div>
+            
+    <hr>
+    <br>
+    <br>
+    <hr>
+   
+    <!-- Exit  model page 
     <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -144,84 +198,20 @@
                 <h4>вы уверены что хотите выйти?</h4>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                    <a href=""><button type="button" class="btn btn-primary">Выйти</button></a>
                 </div>
             </div>
         </div>
       </div>
     </div>
+    -->
 
-    <!-- Add job Modal page -->
-    <div class="modal fade" id="add_job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-horizontal" action="" method="POST" id='add_job_form' role="form">
-            {% csrf_token %} 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Добавить ваканцию</h4>
-            </div>
-            <div class="modal-body">
-                <label for="title">Заголовок задания</label><br>
-                <input required type="text" name="title" id="title" placeholder=""><br>
-                <label for="description">Описание</label><br>
-                <textarea required name="description" id="description" cols="49" rows = "4" form="add_job_form"></textarea>
-                <label for="category">Категория</label>
-                <select required name="category" id='category'class="form-control">
-                    {% for category in categories %}
-                    <option value="{{category.pk}}" selected="">{{category.title}}</option>
-                    {% endfor %}
-                </select>
-                <br>
-                <label for="price">Цена</label><br>
-                <input required  type="number" name="price" id="price" placeholder="">(сом)<br>
-                <label for="address">Адрес</label>
-                <textarea name="address" id="address" cols="49" rows = "2" form="add_job_form"></textarea>
-                <div class="modal-footer">
-                    <input type='submit' value='Добавить'  class="btn btn-primary" role="button">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                </div>
-          </div>
-          </form>
-          
-        </div>
-      </div>
-    </div>
+    
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; JumushBar.kg 2015. Ariet Nyshanbaev</p>
-                </div>
-            </div>
+    <footer style="background-color:gray">
+        <div  class="container text-center">
+            <p style="color:white">© 2015 JumushBar.kg</p>
         </div>
     </footer>
 

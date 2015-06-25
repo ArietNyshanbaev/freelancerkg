@@ -111,3 +111,19 @@ class Mail(models.Model):
 	class Meta:
 		verbose_name = "сообщение"
 		verbose_name_plural = "сообщения"
+
+class Order(models.Model):
+	name = models.CharField('имя заказчика',max_length=100)
+	telephone = models.CharField('номер телефона',max_length=100)
+	category = models.ForeignKey(Category, verbose_name='категория')
+	date_of_order = models.CharField('дата и время исполнения заказа',max_length=200, default="не указан")
+	job_description = models.TextField('описание заказа', default="не указан")
+	address = models.CharField('номер телефона',max_length=400, default="не указан")
+	date_of_submition = models.DateTimeField('дата и время поступления заявки', default=datetime.now)
+	def __unicode__(self):
+		return self.name + " " + self.telephone
+
+	class Meta:
+		verbose_name = "заявка"
+		verbose_name_plural = "заявки"
+		
