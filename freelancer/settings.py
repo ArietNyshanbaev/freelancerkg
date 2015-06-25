@@ -29,7 +29,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,'home','templates','home'),
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jumushbar.tk','www.jumushbar.tk','91.213.233.202']
 #DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mathfilters',
     'main',
     'home',
 )
@@ -92,6 +93,7 @@ STATIC_URL = '/static-root/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
+
 STATIC_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )

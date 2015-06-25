@@ -1,0 +1,14 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+
+.bordered{
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 2px;
+}
+ a:hover .bordered{
+ 	border: 2px solid #FF6600;
+    color: #FF6600;
+    text-decoration: none;
+    opacity: .9;
+}

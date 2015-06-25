@@ -12,6 +12,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Information , SkillofUser , Skill , Category , Job, Slogan,Order
+import requests
 
 
 # Views
@@ -21,6 +22,7 @@ def mainpage(request):
 	args={}
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
+	message = "JB:"
 	#if user have complated registration
 	#if hasattr(request.user, 'information'):
 
@@ -35,7 +37,12 @@ def mainpage(request):
 		category = get_object_or_404(Category, pk=category)
 		new_order = Order.objects.create(name = name, job_description = job_description, telephone = telephone, category = category, date_of_order = date_of_order, address=address)
 		new_order.save()
+		# dealing with sms
 		args["success_message"] = "ваша заявка принята , наши операторы свяжутся с вами в течении 5 минут"
+		message += '\nname:' + str(name) + '\n telephone:' + str(telephone) + '\n date:' + str(date_of_order) 
+		sms_url = 'http://smsc.ru/sys/send.php?login=traktorist221&psw=smsc120701&phones=996556606737&mes='
+		sms_url += message
+		r = requests.get(sms_url) 
 		
 
 	# the method is get

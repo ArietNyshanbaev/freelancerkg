@@ -92,14 +92,12 @@
             <div class="col-md-4">
             <br>
                 <img height="300" width="300" class="images" src="../../../media/{{worker.information.image}}" alt='surot1'>
-                <p><strong>Вид деятельности: </strong>
-                   {{worker.information.category.title}}
-                </p>
+                <!--
                 <p><strong>Навыки: </strong>
                    {% for skill in worker.information.skillofuser_set.all %}
                       <span class="label label-info tags">{{ skill.skill.title }}</span>
                    {%endfor%}
-                </p>
+                </p>-->
                 
             </div>
             <div class="col-md-2"></div>
@@ -112,12 +110,14 @@
                 Мужской
                 {% endif %}
                 </p>
-                <p><strong>Дата рождения </strong> : {{worker.information.born_date}}</p>
-                <p><strong>Номер телефона </strong> : {{worker.information.phone_number}}</p>
-                <p><strong>Email </strong> : {{worker.email}}</p>
+                <p><strong>Возраст </strong> : {{worker.information.born_date}}</p>
+                <p><strong>Вид деятельности: </strong>
+                   {{worker.information.category.title}}
+                </p>
             </div>
         </div>
         <hr>
+        <!--
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
@@ -156,6 +156,7 @@
             </div>
             <div class="col-lg-2"></div>
         </div>
+        -->
         <hr>
     </div>
 
@@ -177,6 +178,10 @@
         </div>
       </div>
     </div>
+
+     <!-- social share -->
+    <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
+    <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
 
     <!-- Footer -->
     <footer style="background-color:gray">

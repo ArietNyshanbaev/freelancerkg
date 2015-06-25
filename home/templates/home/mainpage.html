@@ -95,6 +95,7 @@
             </div>
         </div>
     </header>
+    
 
     <!-- Main Content -->
     <div class="container">
@@ -121,54 +122,60 @@
             </div>
         {% endif %}
         <h3>
-        Позвоните по номеру <strong><span style="color:#32CD32"> 0551344462 </span></strong>чтобы оставить заявку<hr>
+        Позвоните по номеру <strong><span style="color:#32CD32"> 0556606737 </span></strong>чтобы оставить заявку<hr>
         или
         <hr>
-        Заполните форму и мы вам перезвоним в течение 5 минут</h3>
+        Заполните форму и мы вам перезвоним в течение <strong><span style="color:#32CD32"> 5 минут  </span></strong></h3>
         <form id="order-form" action="" method="post" role="form">
             {% csrf_token %}
         
             <section class="content text-center">
                 <span class="input input--minoru">
-                    <input class="input__field input__field--minoru" name="name" type="text" id="input-13" required/>
                     <label class="input__label input__label--minoru" for="input-13">
                         <h4>Имя заказчика</h4>
                     </label>
+                    <input class="input__field input__field--minoru" name="name" type="text" id="input-13" required/>
+                    <label class="input__label input__label--minoru" for="input-13"></label>
                 </span>
                 <span class="input input--minoru">
-                    <input class="input__field input__field--minoru" name="telephone" type="text" id="input-14" required/>
                     <label class="input__label input__label--minoru" for="input-14">
                         <h4>Номер телефона</h4>
                     </label>
+                    <input class="input__field input__field--minoru" name="telephone" type="text" id="input-14" required/>
+                    <label class="input__label input__label--minoru" for="input-14"></label>
                 </span>
                 <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-15">
+                        <h4>Мне нужен</h4>
+                    </label>
                     <select class="input__field input__field--minoru" name="category" id="input-15" required>
                         <option disabled selected="" value="1">Не выбрано</option>
                         {% for category in categories %}
                             <option value="{{category.pk}}">{{category.title}}</option>
                         {% endfor %}
                     </select>
-                    <label class="input__label input__label--minoru" for="input-15">
-                        <h4>Мне нужен</h4>
-                    </label>
+                    <label class="input__label input__label--minoru" for="input-15"></label>
                 </span>
                 <span class="input input--minoru">
-                    <input class="input__field input__field--minoru" name="date_order" type="text" id="input-17" placeholder="например: 31.05.2015 в 16:40" />
                     <label class="input__label input__label--minoru" for="input-17">
                         <h4>Примерное время </h4>
                     </label>
+                    <input class="input__field input__field--minoru" name="date_order" type="text" id="input-17" placeholder="например: 31.05.2015 в 16:40" />
+                    <label class="input__label input__label--minoru" for="input-17"></label>
                 </span>
                 <span class="input input--minoru">
-                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="description" rows="6" placeholder="например: Нужен сантехник чтобы установить стиральную машину "></textarea>
                     <label class="input__label input__label--minoru" for="input-16">
                         <h4>Описание работы</h4>
                     </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="description" rows="6" placeholder="например: Нужен сантехник чтобы установить стиральную машину "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
                 </span>
                 <span class="input input--minoru">
-                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="address" rows="6" placeholder="например: Восток-5, Дом 27,Квартира 64 "></textarea>
                     <label class="input__label input__label--minoru" for="input-16">
                         <h4>Адрес заказчика</h4>
                     </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="address" rows="6" placeholder="например: Восток-5, Дом 27,Квартира 64 "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
                 </span>
             </section>
             <div class="row">
@@ -180,7 +187,11 @@
             </div>
         </form>
     </div>
-            
+    
+    <!-- social share -->
+    <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
+    <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
+
     <hr>
     <br>
     <br>
