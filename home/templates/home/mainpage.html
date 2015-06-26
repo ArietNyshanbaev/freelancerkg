@@ -149,7 +149,6 @@
                         <h4>Мне нужен</h4>
                     </label>
                     <select class="input__field input__field--minoru" name="category" id="input-15" required>
-                        <option disabled selected="" value="1">Не выбрано</option>
                         {% for category in categories %}
                             <option value="{{category.pk}}">{{category.title}}</option>
                         {% endfor %}
@@ -187,7 +186,7 @@
             </div>
         </form>
     </div>
-    
+
     <!-- social share 
     <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
     <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
