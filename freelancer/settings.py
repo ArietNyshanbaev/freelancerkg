@@ -29,7 +29,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,'home','templates','home'),
 )
 
-ALLOWED_HOSTS = ['jumushbar.tk','www.jumushbar.tk','91.213.233.202']
+ALLOWED_HOSTS = ['jumushbar.kg','www.jumushbar.kg','jumushbar.tk','www.jumushbar.tk','91.213.233.202']
 #DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 # Application definition
