@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     #url(r'^delete_skill/(?P<skill_id>.+)$', 'home.views.delete_skill',name='delete_skill'),
     #urls of hirer section
     #url(r'^hire$', 'home.views.mainpage_hire',name='mainpage_hire'),
-    url(r'^look_profile/(?P<key>.+)/(?P<worker_id>.+)$', 'home.views.look_profile',name='look_profile'),
+    url(r'^look_profile/(?P<worker_id>.+)$', 'home.views.look_profile',name='look_profile'),
     url(r'^list_workers/(?P<category_id>.+)/$', 'home.views.list_workers',name='list_workers'),
     url(r'^list_workers/$','home.views.list_workers',name='list_workers'),
     #url(r'^my_projects$', 'home.views.my_projects',name='my_projects'),

@@ -1,6 +1,7 @@
 ﻿#python importings
 from random import randint
 #importings
+from django.http import Http404
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response, redirect, get_object_or_404
@@ -296,6 +297,11 @@ def list_workers(request,category_id = -1):
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
 	#if hasattr(request.user, 'information'):
+
+	try:
+		int(category_id)
+	except Exception, e:
+		raise Http404
 	if int(category_id) > 0:
 		category = get_object_or_404(Category, pk=category_id)
 		args['workers'] = Information.objects.filter(category = category).filter(stuff=True)
@@ -312,22 +318,24 @@ def list_workers(request,category_id = -1):
 	#if user hase not registered yet
 	#return redirect(reverse('home:create_info'))
 
-def look_profile(request, key, worker_id):
+def look_profile(request, worker_id):
 	#init variables
 	args={}
 	slogans = Slogan.objects.all()
 
 	
 	args['user'] = request.user
+	try:
+		int(worker_id)
+	except Exception, e:
+		raise Http404
+	
 	worker = get_object_or_404(Information, pk=worker_id)
 	worker = worker.user
 	args['worker'] = worker
 	args['slogan'] = slogans[randint(0,slogans.count()-1)]
-	if int(key) == 1:
-		return render_to_response('home/look_profile_work.html',args)
-
-	owned_skills = worker.information.skillofuser_set.all().order_by('-experience')
-	args['user_skills'] = owned_skills
+	#owned_skills = worker.information.skillofuser_set.all().order_by('-experience')
+	#args['user_skills'] = owned_skills
 	return render_to_response('home/look_profile_hire.html',args)
 
 """

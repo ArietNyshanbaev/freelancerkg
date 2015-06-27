@@ -151,7 +151,7 @@
                         {% if forloop.counter0|mod:5 == 0 %}
                             <div class="col-md-1"></div>
                         {% endif %}
-                        <a href="{% url 'home:look_profile' '2' worker.pk %}">
+                        <a href="{% url 'home:look_profile' worker.pk %}">
                             <div class=' col-md-2 text-center bordered'>
                                     <br>
                                     <img src="../../../media/{{worker.image}}" height="100" width="100">
