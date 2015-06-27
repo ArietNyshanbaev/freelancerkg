@@ -61,7 +61,7 @@
                         <a href="{% url 'home:list_workers'%}">персонал</a>
                     </li>
                     <li>
-                        <a href="{% url 'main:mainpage'%}">о нас</a>
+                        <a href="{% url 'main:mainpage'%}">о сервисе</a>
                     </li>
                     <!--
                     <li>
@@ -157,7 +157,7 @@
                                     <img src="../../../media/{{worker.image}}" height="100" width="100">
                                     <h3 class="post-subtitle">
                                         {{worker.user.first_name}}
-                                        
+
                                     </h3>
                                     <h5 class="post-subtitle">
                                         {{worker.category.title}}<br>
@@ -252,6 +252,38 @@
             <p style="color:white">© 2015 JumushBar.kg</p>
         </div>
     </footer>
+
+
+     <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter31125606 = new Ya.Metrika({
+                        id:31125606,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/31125606" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'js/clean-blog.min.js' %}"></script>
