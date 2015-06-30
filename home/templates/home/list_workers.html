@@ -116,7 +116,7 @@
                 <div class="row text-center">
                     {% for category in categories %}
                         {% if this_category.id ==  category.id %}
-                            <div class="col-md-6" style="background-color:yellow">
+                            <div class="col-md-3" style="background-color:yellow">
                                 <a href="{% url 'home:list_workers' this_category.id%}">
                                     <br>
                                     <img src="../../../media/{{this_category.icon}}" height="100" width="100">
@@ -124,7 +124,7 @@
                                 </a>
                             </div>
                         {% else %}
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <a href="{% url 'home:list_workers' category.id%}">
                                     <br>
                                     <img src="../../../media/{{category.icon}}" height="100" width="100">
