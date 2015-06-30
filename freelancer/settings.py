@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '&i*r*^o@v3cy9_k8h$59!mxzh8yk&zo&!&br*am!bsy6p_3@w0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,'templates'),
     os.path.join(BASE_DIR,'main','templates','main'),
