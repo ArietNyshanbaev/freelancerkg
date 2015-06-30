@@ -20,6 +20,9 @@
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
     <link href="{% static 'css/list-workers.css' %}" rel="stylesheet">
 
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+
     
 
     <!-- Custom Fonts -->
@@ -58,10 +61,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a href="{% url 'home:list_workers'%}">персонал</a>
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{% url 'main:mainpage'%}">о сервисе</a>
+                        <a href="{% url 'main:mainpage'%}">обратная связь</a>
                     </li>
                     <!--
                     <li>
@@ -173,9 +176,6 @@
             
             </div>
     </div>
-     <!-- social share -->
-    <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
-    <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
 
     <hr>
 

@@ -43,13 +43,26 @@ def mainpage(request):
 		message += '\nname:' + str(name.encode('utf-8')) + '\n telephone:' + str(telephone.encode('utf-8')) + '\n date:' + str(date_of_order.encode('utf-8'))
 		sms_url = 'http://smsc.ru/sys/send.php?login=traktorist221&psw=smsc120701&phones=996556606737&mes='
 		sms_url += message
-		r = requests.get(sms_url) 
+		r = requests.get(sms_url)
 		
 
 	# the method is get
 	args['categories'] = Category.objects.all()
-	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	args['slogan'] = slogans[0]
 	return render_to_response('home/mainpage.html',args)
+
+def add_task(request):
+	#initialize variables
+	args={}
+	slogans = Slogan.objects.all()
+	args.update(csrf(request))
+
+	args['categories'] = Category.objects.all()
+	args['slogan'] = slogans[0]
+
+	return render_to_response('home/add_job_form.html',args)
+	
+	
 """
 @login_required(login_url=reverse('main:signin'))
 def profile(request):
@@ -312,7 +325,7 @@ def list_workers(request,category_id = -1):
 		categories = Category.objects.all().order_by('title')
 
 	args['categories'] = categories
-	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	args['slogan'] = slogans[0]
 	args['user'] = request.user
 	return render_to_response('home/list_workers.html',args)
 	#if user hase not registered yet
@@ -333,7 +346,7 @@ def look_profile(request, worker_id):
 	worker = get_object_or_404(Information, pk=worker_id)
 	worker = worker.user
 	args['worker'] = worker
-	args['slogan'] = slogans[randint(0,slogans.count()-1)]
+	args['slogan'] = slogans[0]
 	#owned_skills = worker.information.skillofuser_set.all().order_by('-experience')
 	#args['user_skills'] = owned_skills
 	return render_to_response('home/look_profile_hire.html',args)

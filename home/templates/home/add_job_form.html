@@ -1,4 +1,4 @@
-﻿{%load staticfiles%}
+{%load staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,12 +21,6 @@
     <link href="{% static 'css/normailze-input.css' %}" rel="stylesheet">
     <link href="{% static 'css/demo-input.css' %}" rel="stylesheet">
     <link href="{% static 'css/component-input.css' %}" rel="stylesheet">
-
-    <link href="{% static 'css/animate.css'%}" rel="stylesheet" />
-    <link href="{% static 'css/style.css'%}" rel="stylesheet">
-    <link href="{% static 'color/default.css'%}" rel="stylesheet">
-
-    
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -92,87 +86,11 @@
                             <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
                         <hr class="small">
                         <span class="subheading">{{slogan}}</span>
-                        <br><br><br><br>
-                        <div class="">
-                                <a href="{% url 'home:add_task' %}"><button type="button" class="btn btn-md btn-min-block btn-success">создать задание</button></a>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-
-    {% if success_message%}
-            <div class="alert alert-success text-center" role="alert">
-            <br>
-            <h5>{{success_message}}</h5>
-            </div>
-    {% endif %}
-
-    <!-- Section: about -->
-    <section id="about" class="home-section color-dark bg-white">
-        <div class="container marginbot-50">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.2s">
-                        <div class="section-heading text-center">
-                            <h2 class="h-bold">JumushBar</h2>
-                                <div class="divider-header"></div>
-                            <p>Сервис который упрощает процесс поиска таких исполнителей как сантехник , мастер ремонта техники , электрик  т.е те дела которые непосредственно связаны с домом и нужно выезжать.</p>
-                            <p>Оставьте заботы нам и наслаждайтесь нашим сервисом.</p>
-                        </div>
-                    </div>
-                </div>
-                <br><br><br>
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
-                        <div class="section-heading text-center">
-                            <h2 class="h-bold">Статистика</h2>
-                                <div class="divider-header"></div>
-                            <p>Статистика <strong>JumushBar</strong> за этот месяц</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="container">
-
-        
-        <div class="row">
-        
-            <div class="col-md-6">
-                <img src="{%static 'images/dummy1.jpg'%}" alt="" class="img-responsive" />
-      
-           </div>
-            
-            <div class="col-md-6">                  
-                <div class="progress progress-striped active">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100" style="width: 74%">
-                    74% - работы выполнено
-                  </div>
-                </div>
-
-                <div class="progress progress-striped active">
-                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" style="width: 29%">
-                    26% - ждут очереди
-                  </div>
-                </div>
-                <hr>
-                <br>
-                <h3 class="h-bold">Профессионалы обитают здесь</h3>
-
-            </div>
-        
-
-        </div>      
-        </div>
-
-    </section>
-    <!-- /Section: about -->
 
     <!-- Main Content -->
     <div class="container">
@@ -190,10 +108,77 @@
     </div>
 
     <hr>
-    <!-- social share -->
+    <div class="container text-center">
+        <h3>
+        Позвоните по номеру <strong><span style="color:#32CD32"> 0556606737 </span></strong>чтобы оставить заявку<hr>
+        или
+        <hr>
+        Заполните форму и мы вам перезвоним в течение <strong><span style="color:#32CD32"> 5 минут  </span></strong></h3>
+        <form id="order-form" action="{% url 'home:mainpage'%}" method="post" role="form">
+            {% csrf_token %}
+        
+            <section class="content text-center">
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-13">
+                        <h4>Имя заказчика</h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="name" type="text" id="input-13" required/>
+                    <label class="input__label input__label--minoru" for="input-13"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-14">
+                        <h4>Номер телефона</h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="telephone" type="text" id="input-14" required/>
+                    <label class="input__label input__label--minoru" for="input-14"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-15">
+                        <h4>Мне нужен</h4>
+                    </label>
+                    <select class="input__field input__field--minoru" name="category" id="input-15" required>
+                        {% for category in categories %}
+                            <option value="{{category.pk}}">{{category.title}}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="input__label input__label--minoru" for="input-15"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-17">
+                        <h4>Примерное время </h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="date_order" type="text" id="input-17" placeholder="например: 31.05.2015 в 16:40" />
+                    <label class="input__label input__label--minoru" for="input-17"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Описание работы</h4>
+                    </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="description" rows="6" placeholder="например: Нужен сантехник чтобы установить стиральную машину "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Адрес заказчика</h4>
+                    </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="address" rows="6" placeholder="например: Восток-5, Дом 27,Квартира 64 "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
+                </span>
+            </section>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <input class="btn btn-block btn-sm btn-success" value="отправить заявку" type="submit">
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </form>
+    </div>
+
+    <!-- social share 
     <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
     <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
-    
+    -->
     <hr>
     <br>
     <br>
@@ -269,9 +254,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <script src="{% static 'js/wow.min.js'%}"></script>
-
-    <script src="{% static 'js/custom.js'%}"></script>
 
     
 

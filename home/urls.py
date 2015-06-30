@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^look_profile/(?P<worker_id>.+)$', 'home.views.look_profile',name='look_profile'),
     url(r'^list_workers/(?P<category_id>.+)/$', 'home.views.list_workers',name='list_workers'),
     url(r'^list_workers/$','home.views.list_workers',name='list_workers'),
+    url(r'^add_task/$','home.views.add_task',name='add_task'),
+
     #url(r'^my_projects$', 'home.views.my_projects',name='my_projects'),
     #url(r'^delete_job/(?P<job_id>.+)$', 'home.views.delete_job',name='delete_job'),
 )
