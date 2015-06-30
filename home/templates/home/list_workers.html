@@ -20,6 +20,9 @@
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
     <link href="{% static 'css/list-workers.css' %}" rel="stylesheet">
 
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+
     
 
     <!-- Custom Fonts -->
@@ -58,10 +61,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a href="{% url 'home:list_workers'%}">персонал</a>
+                        <a href="{% url 'home:list_workers'%}">исполнители</a>
                     </li>
                     <li>
-                        <a href="{% url 'main:mainpage'%}">о сервисе</a>
+                        <a href="{% url 'main:mainpage'%}">обратная связь</a>
                     </li>
                     <!--
                     <li>
@@ -113,18 +116,20 @@
                 <div class="row text-center">
                     {% for category in categories %}
                         {% if this_category.id ==  category.id %}
-                            <div class="col-md-6" style="background-color:yellow">
+                            <div class="col-md-3" style="background-color:yellow">
                                 <a href="{% url 'home:list_workers' this_category.id%}">
                                     <br>
                                     <img src="../../../media/{{this_category.icon}}" height="100" width="100">
-                                    {{this_category.title}}<br><br>
+				    <br>
+                                    {{this_category.title}}
                                 </a>
                             </div>
                         {% else %}
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <a href="{% url 'home:list_workers' category.id%}">
                                     <br>
                                     <img src="../../../media/{{category.icon}}" height="100" width="100">
+				    <br>
                                     {{category.title}}
                                 </a>
                             </div>
@@ -173,9 +178,6 @@
             
             </div>
     </div>
-     <!-- social share -->
-    <div class="share42init" data-top1="150" data-top2="20" data-margin="0"></div>
-    <script type="text/javascript" src="{% static 'js/share42.js'%}"></script>
 
     <hr>
 
