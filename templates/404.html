@@ -1,0 +1,23 @@
+
+{%load staticfiles%}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>404 JumushBar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="{% static 'css/404.css'%}">
+</head>
+<body>
+<div class="wrap">
+	<a href="{% url 'home:mainpage'%}"><h1>JumushJok.kg</h1></a>
+	<div class="banner">
+		<img src="images/banner.png" alt="" />
+	</div>
+	<div class="page">
+		<h2>Запрашиваемая страница не найдена.</h2>
+	</div>
+</div>
+</body>
+</html>
+
