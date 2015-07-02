@@ -134,7 +134,7 @@
                         <div class="section-heading text-center">
                             <h2 class="h-bold">Как это работает</h2>
                                 <div class="divider-header"></div>
-                            <p>1. <strong>Вы создаете задание</strong>,которую требуется выполнить
+                            <p>1. <strong>Вы создаете задание</strong>,которое требуется выполнить
                             <br><a href="{% url 'home:add_task' %}">создать задание</a>
                             <br>
                             или<br> позвоните по номеру  <strong><span style="color:#32CD32"> 0556606737 </span></strong> 
@@ -143,8 +143,61 @@
                                 2. <strong> Наш оператор </strong> свяжется с Вами в течении <strong><span style="color:#32CD32; font-size:36px"> 5 </span></strong> минут
                             </p>
                             <p>
-                                3. <strong> Мы подбирем </strong> работника, который идеально подходит Вам  
+                                3. <strong> Мы подберем </strong> работника, который идеально подходит Вам  
                             </p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-lg-8 col-lg-offset-2">
+                <hr>
+                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.2s">
+                        <div class="section-heading text-center">
+                            <h2 class="h-bold"> Наши услуги</h2>
+                                <div class="divider-header"></div>
+                            <div class="row text-center categories">
+                                {% for category in categories %}
+                                        <div class="col-md-3">
+                                            <a href="{% url 'home:list_workers' category.id%}">
+                                                <br>
+                                                <img src="../../../media/{{category.icon}}" height="100" width="100">
+                                                <br>
+                                                {{category.title}}
+                                            </a>
+                                        </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+
+                <div class="col-lg-8 col-lg-offset-2">
+                <hr>
+                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.2s">
+                        <div class="section-heading text-center">
+                            <h2 class="h-bold"> Наши преимущества</h2>
+                            <div class="divider-header"></div>
+                            <div class="row text-left">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="advantages"> Проверенные исполнители </span> <br><br>
+
+
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="advantages"> Экономия времени </span> <br><br>
+
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="advantages"> Выгодные цены </span> <br><br>
+                            </div>
                         </div>
                     </div>
                 </div>
