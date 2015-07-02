@@ -328,7 +328,7 @@ def list_workers(request,category_id = -1):
 
 	args['categories'] = categories
 	args['slogan'] = slogans[0]
-	args['user'] = request.user
+	# args['user'] = request.user
 	return render_to_response('home/list_workers.html',args)
 	#if user hase not registered yet
 	#return redirect(reverse('home:create_info'))
