@@ -318,11 +318,13 @@ def list_workers(request,category_id = -1):
 	if int(category_id) > 0:
 		category = get_object_or_404(Category, pk=category_id)
 		args['workers'] = Information.objects.filter(category = category).filter(stuff=True)
-		categories = Category.objects.all().order_by('title')
+		categories = Category.objects.all().order_by('id')
 		args['this_category'] = category
 	else:
-		args['workers'] = Information.objects.all().filter(stuff=True)
-		categories = Category.objects.all().order_by('title')
+		category = get_object_or_404(Category, pk=4)
+		args['workers'] = Information.objects.filter(category = category).filter(stuff=True)
+		categories = Category.objects.all().order_by('id')
+		args['this_category'] = category
 
 	args['categories'] = categories
 	args['slogan'] = slogans[0]
