@@ -9,15 +9,15 @@
 <link rel="stylesheet" href="{% static 'css/404.css'%}">
 </head>
 <body>
-<div class="wrap">
-	<a href="{% url 'home:mainpage'%}"><h1>JumushJok.kg</h1></a>
-	<div class="banner">
-		<img src="images/banner.png" alt="" />
+	<div class="wrap">
+		<a href="{% url 'home:mainpage'%}"><h1>JumushJok.kg</h1></a>
+		<div class="banner">
+			<img src="{% static 'images/banner.png'%}" alt="" />
+		</div>
+		<div class="page">
+			<h2>Запрашиваемая страница не найдена.</h2>
+		</div>
 	</div>
-	<div class="page">
-		<h2>Запрашиваемая страница не найдена.</h2>
-	</div>
-</div>
 </body>
 </html>
 
