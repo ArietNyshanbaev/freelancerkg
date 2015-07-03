@@ -94,7 +94,7 @@
                         <span class="subheading">{{slogan}}</span>
                         <br><br><br><br>
                         <div class="">
-                                <a href="{% url 'home:add_task' %}"><button type="button" class="btn btn-md btn-min-block btn-success">создать задание</button></a>
+                                <a href="{% url 'home:add_task' %}"><button type="button" class="btn btn-md btn-min-block btn-success">Заказать услугу</button></a>
                         </div>
                         
                     </div>
@@ -178,9 +178,11 @@
                         <div class="section-heading text-center">
                             <h2 class="h-bold"> Наши услуги</h2>
                                 <div class="divider-header"></div>
+                                <h3>На данный момент</h3>
                             <div class="row text-center categories">
                                 {% for category in categories %}
-                                        <div class="col-md-3">
+                                    {% if category.information_set.count > 0 %}
+                                        <div class="col-md-4">
                                             <a href="{% url 'home:list_workers' category.id%}">
                                                 <br>
                                                 <img src="../../../media/{{category.icon}}" height="100" width="100">
@@ -188,6 +190,23 @@
                                                 {{category.title}}
                                             </a>
                                         </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <br><br>
+                            <h3 class="text-center" style="color:#FF5A09">В скором времени</h3>
+                            <div class="row text-center categories">
+                                {% for category in categories %}
+                                    {% if category.information_set.count < 1 %}
+                                        <div class="col-md-4">
+                                            <a>
+                                                <br>
+                                                <img src="../../../media/{{category.icon}}" height="100" width="100">
+                                                <br>
+                                                {{category.title}}
+                                            </a>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
