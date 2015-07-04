@@ -256,7 +256,9 @@
                         {% if this_category.id == category.id %}
                             <option value="{{category.pk}}" selected="">{{category.title}}</option>
                         {% else %}
-                            <option value="{{category.pk}}">{{category.title}}</option>
+                            {% if category.information_set.count > 0 %}
+                                <option value="{{category.pk}}">{{category.title}}</option>
+                            {% endif %}
                         {% endif %}
                         
                     {% endfor %}

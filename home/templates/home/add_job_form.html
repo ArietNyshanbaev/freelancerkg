@@ -138,7 +138,9 @@
                     </label>
                     <select class="input__field input__field--minoru" name="category" id="input-15" required>
                         {% for category in categories %}
-                            <option value="{{category.pk}}">{{category.title}}</option>
+                            {% if category.information_set.count > 0%}
+                                <option value="{{category.pk}}">{{category.title}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <label class="input__label input__label--minoru" for="input-15"></label>
