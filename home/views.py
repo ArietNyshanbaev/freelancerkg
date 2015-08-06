@@ -49,7 +49,7 @@ def mainpage(request):
 	# the method is get
 	args['categories'] = Category.objects.all()
 	args['slogan'] = slogans[0]
-	return render_to_response('home/mainpage.html',args)
+	return render_to_response('home/main.html',args)
 
 def add_task(request):
 	#initialize variables
@@ -60,7 +60,7 @@ def add_task(request):
 	args['categories'] = Category.objects.all()
 	args['slogan'] = slogans[0]
 
-	return render_to_response('home/add_job_form.html',args)
+	return render_to_response('home/add_job.html',args)
 	
 	
 """

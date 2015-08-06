@@ -1,0 +1,256 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Мой Додыр - профессиональная уборка квартир в Бишкеке</title>
+	<!-- core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.css' %}" rel="stylesheet">
+    
+</head><!--/head-->
+<style type="text/css">
+    #contact-area{
+        font-family: "Museo Sans", "Helvetica", "Arial", "sans-serif";
+        font-size: 13px;
+        line-height: 1.428571429;
+        color: #595959;    
+    }
+</style>
+<body id="home" class="homepage">
+
+
+    <header id="top-header" class="navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                    <nav class="collapse navbar-collapse navbar-left" role="navigation">
+                        <div class="">
+                            <ul id="nav" class="nav navbar-nav">
+                                <li class="scroll"><a href="{% url 'main:main'%}#about" data-section="#about"  style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">О нас </a></li>
+                                <li class="scroll"><a href="{% url 'main:main'%}#features" data-section="#features" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Преимущества</a></li>
+                                <li class="scroll"><a href="{% url 'main:main'%}#services" data-section="#services" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Услуги</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="{% url 'main:main'%}" >
+                            <h4 style=" padding-left:250px;color:#fff; font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 20px;">Мой Додыр</h4>
+                        </a>
+                    </div>
+                    <!-- /logo -->
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a href="{%url 'main:main'%}#portfolio" data-section="#portfolio" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Наши работы</a></li>
+                            
+                        </ul>
+                        <a href="{% url 'main:contacts' %}" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Контакты</span> </a>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+                
+            </div>
+        </header>
+
+    <section id="">
+        <div class="container">
+            <br><br><br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="border:1px solid #d9d9d9; background-color:#f8f8f8">
+                    <div class="row">
+                        <div class="section-header">
+                            <br>
+                            <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Заказ уборки</h2>
+                            <p class="text-center wow fadeInDown animated" style="visibility: visible;">Расскажите о вашей квартире</p>
+                        </div>
+                        <form  name="contact-form" method="post" action="">
+                        {% csrf_token %}
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10  animated animate-from-left" style="opacity: 1; left: 0px;">
+
+                                <div class="form-group">
+                                        <label for="name">Имя</label>
+                                        <input id="name" type="text" name="name" class="form-control" placeholder="введите имя" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Вид уборки</label>
+                                    <select class="form-control" name="category" id="category" required>
+                                        <option value="генеральная уборка">генеральная уборка</option>
+                                        <option value="влажная уборка">влажная уборка</option>
+                                        <option value="после ремонта">после ремонта</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Дата</label>
+                                    <input data-provide="datepicker" id="date" name="date" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Время</label>
+                                    <select class="form-control" name="time" id="time" required>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option selected="" value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                    </select>
+                                </div>
+
+                                <script type="text/javascript">
+
+                                    function Check() {
+                                        if (document.getElementById('yesCheck').checked) {
+                                            document.getElementById('kvartira').style.display = 'block';
+                                            document.getElementById('ofis').style.display = 'none';
+                                        }
+
+                                        if (document.getElementById('noCheck').checked) {
+                                            document.getElementById('kvartira').style.display = 'none';
+                                            document.getElementById('ofis').style.display = 'block';
+                                        }
+
+                                    }
+
+                                </script>
+                                  тип помещения:<br><input value="kvartira" type="radio" required onclick="javascript:Check();" name="yes" id="yesCheck"> &nbsp;&nbsp;дом или квартира &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="ofis" onclick="javascript:Check();" name="yes" id="noCheck"> &nbsp;&nbsp;офис или помещение <br>
+                                    <div id="kvartira" style="display:none">
+                                        <select class="form-control" name="rooms" id="rooms" required>
+                                            <option value="1 комната (1 убровица)">1 комната (1 убровица)</option>
+                                            <option value="2 комнат (1 убровица)">2 комнат (1 убровица)</option>
+                                            <option value="3 комнат (2 убровиц)">3 комнат (2 убровиц)</option>
+                                            <option value="4 комнат (2 убровиц)">4 комнат (2 убровиц)</option>
+                                            <option value="5 и более комнат (3 убровиц)">5 и более комнат (3 убровиц)</option>
+                                        </select>
+                                    </div>
+                                    <div id="ofis" style="display:none">
+                                        <select class="form-control" name="ofis" id="ofis" required>
+                                            <option value="До 49 м (1 убровица)">До 49 м (1 убровица)</option>
+                                            <option value="от 50 – 99 м (2 убровиц)">от 50 – 99 м (2 убровиц)</option>
+                                            <option value="от 100-150 м (3 убровиц)">от 100-150 м (3 убровиц)</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                <div class="form-group">
+                                    <label for="address">Адрес</label>
+                                    <input id="address" type="text" name="address" class="form-control" placeholder="введите адрес" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone">Номер телефона</label>
+                                    <input id="telephone" type="text" name="telephone" class="form-control" placeholder="введите номер телефона" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-3"></div>
+                            <div class="clearfix"></div>
+                            <div class="text-center">
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-lg">Отправить заявку</button>
+                            </div>
+                        </form>
+                        <br><br>
+                    </div>
+            </div>
+        </div>
+        <br><br><br>
+    </section><!--/#bottom-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        &copy; 2015 Мой Додыр.</a>
+                    </p>
+                    
+                    <p class="text-center">
+                        Мы в социальных сетях</a>
+                    </p>
+                    
+                    <ul class="social-icons text-center">
+                        <li><a href="https://vk.com/public96862602" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                        <li><a href="https://instagram.com/mydodo.kg/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="https://www.facebook.com/mododyrkg" target="_blank"><i class="fa fa-vk fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/mousescroll.js'%}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+    <script src="{% static 'js/jquery.isotope.min.js'%}"></script>
+    <script src="{% static 'js/jquery.inview.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
+    <script src="{% static 'locales/bootstrap-datepicker.ru.min.js'%}"></script>
+    
+    <script type="text/javascript">
+            // When the document is ready
+            
+            $(document).ready(function () {
+                
+                $('#date').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+                
+                var today = new Date();
+                today.setDate(today.getDate());
+                $("#date").datepicker("setDate", today);
+                $("#date").datepicker('update');
+                $("#date").datepicker({
+                    language: 'ru'
+                });  
+                
+            });
+        </script>
+</body>
+</html>

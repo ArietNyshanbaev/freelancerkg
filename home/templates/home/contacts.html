@@ -1,0 +1,190 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Мой Додыр - профессиональная уборка квартир в Бишкеке</title>
+	<!-- core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.css' %}" rel="stylesheet">
+    <link href="{% static 'css/contacts.css' %}" rel="stylesheet">
+    
+</head><!--/head-->
+<style type="text/css">
+    #contact-area{
+        font-family: "Museo Sans", "Helvetica", "Arial", "sans-serif";
+        font-size: 13px;
+        line-height: 1.428571429;
+        color: #595959;    
+    }
+</style>
+<body id="home" class="homepage" style="background-color:#f8f8f8">
+
+
+    <header id="top-header" class="navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                    
+                    <nav class="collapse navbar-collapse navbar-left" role="navigation">
+                        <div class="">
+                            <ul id="nav" class="nav navbar-nav">
+                                <li class="scroll"><a href="{% url 'main:main' %}#about" data-section="#about"  style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">О нас </a></li>
+                                <li class="scroll"><a href="{% url 'main:main' %}#features" data-section="#features" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Преимущества</a></li>
+                                <li class="scroll"><a href="{% url 'main:main'%}#services" data-section="#services" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Услуги</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="{% url 'main:main'%}" >
+                            <h4 style=" padding-left:250px;color:#fff; font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 20px;">Мой Додыр</h4>
+                        </a>
+                    </div>
+                    <!-- /logo -->
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a href="{% url 'main:main'%}#portfolio" data-section="#portfolio" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Наши работы</a></li>
+                            <li class="scroll"><a href="" data-section="#contact-area" style=" font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; font-size: 16px;">Контакты</a></li>   
+                        </ul>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+                
+            </div>
+        </header>
+    {% if success_message%}
+        <div class="alert alert-success text-center" role="alert">
+        <br>
+        <h5>{{success_message}}</h5>
+        </div>
+    {% endif %}
+
+    <section id="services" >
+        <div class="container">
+
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Контактные данные</h2>
+                <p class="text-center wow fadeInDown">Свяжитесь с нами</p>
+            </div>
+
+            <div class="row">
+                <div class="features">
+                    <div class="col-sm-6 col-md-6 col-lg-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <h3 class="features-title font-alt">0557 08-13-18 и 0706 08-13-18</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <h3 class="features-title font-alt"> mododyr@gmail.com</h3>
+                                
+                            <br>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!--/.row-->    
+        </div><!--/.container-->
+    </section><!--/#services-->
+    <hr>
+    <section id="contact-area" >
+        <div class="container" >
+            <div class="row">
+                <div class="section-header">
+                    <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">СВЯЗАТЬСЯ С НАМИ</h2>
+                    <p class="text-center wow fadeInDown animated" style="visibility: visible;">Если у вас возникли вопросы или если есть предложения - обращайтесь.</p>
+                </div>
+                <form  name="contact-form" method="post" action="{% url 'main:send_message'%}">
+                {% csrf_token %}
+                    <div class="col-lg-6 animated animate-from-left" style="opacity: 1; left: 0px;">
+
+                        <div class="form-group">
+                                <label for="name">Имя</label>
+                                <input id="name" type="text" name="name" class="form-control" placeholder="введите имя" required>
+                            </div>
+                        <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="введите email" required>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 animated animate-from-right" style="opacity: 1; right: 0px;">
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea name="message" id="message" class="form-control" rows="8" placeholder="написать сообщение" required></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center">
+
+                          <button type="submit" class="btn btn-primary btn-lg">Отправить сообщение</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section><!--/#bottom-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        &copy; 2015 Мой Додыр.</a>
+                    </p>
+                    
+                    <p class="text-center">
+                        Мы в социальных сетях</a>
+                    </p>
+                    
+                    <ul class="social-icons text-center">
+                        <li><a href="https://vk.com/public96862602" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                        <li><a href="https://instagram.com/mydodo.kg/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="https://www.facebook.com/mododyrkg" target="_blank"><i class="fa fa-vk fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/mousescroll.js'%}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+    <script src="{% static 'js/jquery.isotope.min.js'%}"></script>
+    <script src="{% static 'js/jquery.inview.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+</html>

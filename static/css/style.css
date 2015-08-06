@@ -565,6 +565,9 @@ section#intro {
 
 
 
+
+
+
 /* ===========================
 --- Services
 ============================ */
@@ -587,12 +590,8 @@ section#intro {
 
 }
 
-.item {
-    margin: 10px;
-}
-
 .item img {
-    display: block;
+
     width: 100%;
     height: auto;
 }	
@@ -638,6 +637,16 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 .widget-contact {
 	text-align: left;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

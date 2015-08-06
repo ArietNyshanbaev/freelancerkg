@@ -10,7 +10,6 @@ def mainpage(request):
 	args={}
 	args.update(csrf(request))
 
-	
 	if request.POST:
 		name = request.POST['name']
 		email = request.POST['email']
@@ -23,7 +22,7 @@ def mainpage(request):
 		return render_to_response('main/mainpage.html',args)
 	else:
 		args['slogan'] = Slogan.objects.get(pk=1) 
-		return render_to_response('main/mainpage.html',args)
+		return render_to_response('main/feedback.html',args)
 """
 def signin(request):
 	if request.user.is_authenticated():

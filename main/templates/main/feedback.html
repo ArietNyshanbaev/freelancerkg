@@ -1,0 +1,194 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>JumushBar.kg</title>
+	<!-- core CSS -->
+    <link href="{% static 'css/new_style/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/normailze-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/demo-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/component-input.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=cyrillic' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'color/default.css'%}" rel="stylesheet">
+</head><!--/head-->
+
+<body id="home" class="homepage">
+
+
+    <header id="top-header" class="navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+
+                <nav class="collapse navbar-collapse navbar-left" role="navigation">
+                    <div class="main-menu">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a class="smooth-scroll text-right" data-section="#home" href="#home" ><img height="35" src="{% static 'images/JB2.jpg'%}"></a></li>
+                            <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                            <li class="scroll"><a href="#about" data-section="#about"  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас </a></li>
+                            <li class="scroll"><a href="#features" data-section="#features" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Как это работает</a></li>
+                            <li class="scroll"><a href="#services" data-section="#services" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Услуги</a></li>
+                            <li class="scroll"><a href="#features" data-section="#advantages" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Преимущества</a></li>
+                           
+                        </ul>
+                    </div>
+                </nav>
+                    
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a href="#portfolio" data-section="#portfolio" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Наши работы</a></li>
+                            
+                        </ul>
+                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Контакты</span> </a>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+                
+            </div>
+        </header>
+
+    {% if success_message%}
+            <div class="alert alert-success text-center" role="alert">
+            <br>
+            <h5>{{success_message}}</h5>
+            </div>
+    {% endif %}
+    <section id="main-slider">
+        <div >
+            <div class="item" style="background-image: url({% static 'images/home-bg.jpg' %});">
+                <div class="slider-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="carousel-content text-center">
+                                    <br><br><br><br><br><br><br>
+                                    <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+                                    <br><hr class="small">
+                                    <span class="subheading">{{slogan}}</span>
+                                    <br><br>
+                                        <a href="{% url 'home:add_task' %}"><button type="button" class="btn btn-lg btn-min-block btn-success">Заказать услугу</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.item-->
+        </div><!--/.owl-carousel-->
+    </section><!--/#main-slider-->
+
+    <!-- Section: contact -->
+    <section id="contact" class="home-section nopadd-bot color-dark bg-gray text-center">
+        <br><br><br><br><br><br><br><br>
+        <div class="container marginbot-50">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+                    <div class="section-heading text-center">
+                    <h2 class="h-bold">Связаться с нами</h2>
+                    <div class="divider-header"></div>
+                    <p>Если у вас возникли вопросы или если есть предложения - обращайтесь.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="container">
+
+            <div class="row marginbot-80">
+                <div class="col-md-8 col-md-offset-2">
+                        <form id="contact-form" action="" method="post" role="form" class="wow bounceInUp" data-wow-offset="10" data-wow-delay="0.2s">
+                        {% csrf_token %}
+                        <div class="row marginbot-20">
+                            <div class="col-md-6 xs-marginbot-20">
+                                <input type="text" class="form-control input-lg" id="name" name="name" placeholder="введите имя" required />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="введите email" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                        <input type="text" class="form-control input-lg" id="subject" name="subject" placeholder="Тема" required />
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" id="message" class="form-control" rows="4" cols="25" required
+                                        placeholder="Сообщение"></textarea>
+                                </div>                      
+                                <button type="submit" class="btn btn-skin btn-lg btn-block" id="btnContactUs">
+                                     Отправить Сообщение</button>
+                            </div>
+                        </div>
+                        </form>
+                </div>
+            </div>  
+
+
+        </div>
+        <br><br><br><br>
+    </section>
+    <!-- /Section: contact -->
+
+    
+    
+    
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        &copy; Jumushbar 2015.</a>
+                    </p>
+                    <br>
+                    <p class="text-center">
+                        Мы в социальных сетях</a>
+                    </p>
+                    
+                    <ul class="social-icons text-center">
+                        <li><a href="" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-vk fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <script src="{% static 'js/new_style/jquery.js'%}"></script>
+    <script src="{% static 'js/new_style/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/new_style/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/new_style/mousescroll.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.prettyPhoto.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.isotope.min.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.inview.min.js'%}"></script>
+    <script src="{% static 'js/new_style/wow.min.js'%}"></script>
+    <script src="{% static 'js/new_style/main.js'%}"></script>
+</body>
+</html>

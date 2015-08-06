@@ -1,0 +1,206 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>JumushBar.kg</title>
+	<!-- core CSS -->
+    <link href="{% static 'css/new_style/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/normailze-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/demo-input.css' %}" rel="stylesheet">
+    <link href="{% static 'css/component-input.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=cyrillic' rel='stylesheet' type='text/css'>
+</head><!--/head-->
+
+<body id="home" class="homepage">
+
+
+    <header id="top-header" class="navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+
+                <nav class="collapse navbar-collapse navbar-left" role="navigation">
+                    <div class="main-menu">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a class="smooth-scroll text-right" data-section="#home" href="#home" ><img height="35" src="{% static 'images/JB2.jpg'%}"></a></li>
+                            <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                            <li class="scroll"><a href="#about" data-section="#about"  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас </a></li>
+                            <li class="scroll"><a href="#features" data-section="#features" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Как это работает</a></li>
+                            <li class="scroll"><a href="#services" data-section="#services" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Услуги</a></li>
+                            <li class="scroll"><a href="#features" data-section="#advantages" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Преимущества</a></li>
+                           
+                        </ul>
+                    </div>
+                </nav>
+                    
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li class="scroll"><a href="#portfolio" data-section="#portfolio" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Наши работы</a></li>
+                            
+                        </ul>
+                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Контакты</span> </a>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+                
+            </div>
+        </header>
+
+    {% if success_message%}
+            <div class="alert alert-success text-center" role="alert">
+            <br>
+            <h5>{{success_message}}</h5>
+            </div>
+    {% endif %}
+    <section id="main-slider">
+        <div >
+            <div class="item" style="background-image: url({% static 'images/home-bg.jpg' %});">
+                <div class="slider-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="carousel-content text-center">
+                                    <br><br><br><br><br><br><br>
+                                    <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+                                    <br><hr class="small">
+                                    <span class="subheading">{{slogan}}</span>
+                                    <br><br>
+                                        <a href="{% url 'home:add_task' %}"><button type="button" class="btn btn-lg btn-min-block btn-success">Заказать услугу</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.item-->
+        </div><!--/.owl-carousel-->
+    </section><!--/#main-slider-->
+
+    <section id="features">
+    <div class="container text-center">
+        <h3>
+        Заполните заявку и в течение <strong><span style="color:#32CD32"> 5 минут  </span></strong>с вами свяжется исполнитель</h3>
+        <form id="order-form" action="{% url 'home:mainpage'%}" method="post" role="form">
+            {% csrf_token %}
+        
+            <section class="content text-center">
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-13">
+                        <h4>Имя заказчика</h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="name" type="text" id="input-13" required/>
+                    <label class="input__label input__label--minoru" for="input-13"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-14">
+                        <h4>Номер телефона</h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="telephone" type="text" id="input-14" required/>
+                    <label class="input__label input__label--minoru" for="input-14"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-15">
+                        <h4>Мне нужен</h4>
+                    </label>
+                    <select class="input__field input__field--minoru" name="category" id="input-15" required>
+                        {% for category in categories %}
+                            {% if category.information_set.count > 0%}
+                                <option value="{{category.pk}}">{{category.title}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <label class="input__label input__label--minoru" for="input-15"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-17">
+                        <h4>Примерное время </h4>
+                    </label>
+                    <input class="input__field input__field--minoru" name="date_order" type="text" id="input-17" placeholder="например: 31.05.2015 в 16:40" />
+                    <label class="input__label input__label--minoru" for="input-17"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Описание работы</h4>
+                    </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="description" rows="6" placeholder="например: Нужен сантехник чтобы установить стиральную машину "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
+                </span>
+                <span class="input input--minoru">
+                    <label class="input__label input__label--minoru" for="input-16">
+                        <h4>Адрес заказчика</h4>
+                    </label>
+                    <textarea id="address-area" class="input__field input__field--minoru" id="input-16" name="address" rows="6" placeholder="например: Восток-5, Дом 27,Квартира 64 "></textarea>
+                    <label class="input__label input__label--minoru" for="input-16"></label>
+                </span>
+            </section>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <input style="paddging:15px 10px" class="btn btn-block btn-lg btn-success" value="отправить заявку" type="submit">
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </form>
+    </div>
+    </section>
+
+
+    
+    
+    
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        &copy; Jumushbar 2015.</a>
+                    </p>
+                    <br>
+                    <p class="text-center">
+                        Мы в социальных сетях</a>
+                    </p>
+                    
+                    <ul class="social-icons text-center">
+                        <li><a href="" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-vk fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <script src="{% static 'js/new_style/jquery.js'%}"></script>
+    <script src="{% static 'js/new_style/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/new_style/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/new_style/mousescroll.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.prettyPhoto.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.isotope.min.js'%}"></script>
+    <script src="{% static 'js/new_style/jquery.inview.min.js'%}"></script>
+    <script src="{% static 'js/new_style/wow.min.js'%}"></script>
+    <script src="{% static 'js/new_style/main.js'%}"></script>
+</body>
+</html>
