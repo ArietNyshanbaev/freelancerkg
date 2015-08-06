@@ -39,16 +39,14 @@
 
                 <nav class="collapse navbar-collapse navbar-left" role="navigation">
                     <div class="main-menu">
+                        <a href="{%url 'home:mainpage'%}" style="float:left; font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></span></a>
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="scroll"><a class="smooth-scroll text-right" data-section="#home" href="#home" ><img height="35" src="{% static 'images/JB2.jpg'%}"></a></li>
+                            <li><a href="{% url 'home:mainpage'%}" ></a></li>
                             <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                            <li class="scroll"><a href="#about" data-section="#about"  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас </a></li>
-                            <li class="scroll"><a href="#features" data-section="#features" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Как это работает</a></li>
-                            <li class="scroll"><a href="#services" data-section="#services" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Услуги</a></li>
-                            <li class="scroll"><a href="#features" data-section="#advantages" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Преимущества</a></li>
-                           
+                            <li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>
                         </ul>
+                        <a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Исполнители</span></a>
                     </div>
                 </nav>
                     
@@ -58,14 +56,15 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="main-menu">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="scroll"><a href="#portfolio" data-section="#portfolio" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Наши работы</a></li>
-                            
+                        <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
                         </ul>
-                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Контакты</span> </a>
+                        <a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">О нас</span> </a>
+                        <a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Обратная связь</span> </a>
+                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Войти</span> </a>
+                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Регистрация</span> </a>
                     </div>
                 </nav>
                 <!-- /main nav -->
-                
             </div>
         </header>
 
@@ -84,7 +83,7 @@
                             <div class="col-md-12">
                                 <div class="carousel-content text-center">
                                     <br><br><br><br><br><br><br>
-                                    <img style="hegiht:750px;width:350px;" src="{% static 'images/v3.png'%}">
+                                    <img style="hegiht:750px;width:350px;" class="img-responsive center-block" src="{% static 'images/v3.png'%}">
                                     <br><hr class="small">
                                     <span class="subheading">{{slogan}}</span>
                                     <br><br>
