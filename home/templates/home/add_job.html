@@ -38,15 +38,17 @@
                     <!-- /responsive nav button -->
 
                 <nav class="collapse navbar-collapse navbar-left" role="navigation">
-                    <div class="main-menu">
-                        <a href="{%url 'home:mainpage'%}" style="float:left; font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></span></a>
+                    <div class="">
                         <ul id="nav" class="nav navbar-nav">
-                            <li><a href="{% url 'home:mainpage'%}" ></a></li>
+                            <li>
+                                <a href="{%url 'home:mainpage'%}" style="float:left; font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a>
+                            </li>
                             <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                            <li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>
+                            <!--<li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>-->
+                            <li> <a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Исполнители</a></li>
                         </ul>
-                        <a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Исполнители</span></a>
+                       
                     </div>
                 </nav>
                     
@@ -54,14 +56,16 @@
 
                 <!-- main nav -->
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
-                    <div class="main-menu">
+                    <div class="">
                         <ul id="nav" class="nav navbar-nav">
                         <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                        <li><a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас</a></li>
+                        <li><a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Обратная связь</a></li>
+                        <li><a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Как стать исполнителем</a></li>
                         </ul>
-                        <a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">О нас</span> </a>
-                        <a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Обратная связь</span> </a>
-                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Войти</span> </a>
-                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Регистрация</span> </a>
+                        
+                        <!--<a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Войти</span> </a>
+                        <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Регистрация</span> </a>-->
                     </div>
                 </nav>
                 <!-- /main nav -->

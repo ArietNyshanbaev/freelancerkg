@@ -25,7 +25,9 @@ def mainpage(request):
 	args.update(csrf(request))
 	message = "JB:"
 	#if user have complated registration
-	#if hasattr(request.user, 'information'):
+	if request.user.is_authenticated():
+		if not hasattr(request.user, 'information'):
+			return redirect(reverse('home:create_info'))
 
 	if request.POST:
 		name = request.POST.get('name', '')
@@ -63,7 +65,7 @@ def add_task(request):
 	return render_to_response('home/add_job.html',args)
 	
 	
-"""
+
 @login_required(login_url=reverse('main:signin'))
 def profile(request):
 	#init variables
@@ -76,8 +78,7 @@ def profile(request):
 		return render_to_response('home/profile.html',args)
 	else:
 		return redirect(reverse('home:create_info'))
-"""
-"""
+
 @login_required(login_url=reverse('main:signin'))
 def create_info(request):
 	#initialize variables
@@ -95,7 +96,7 @@ def create_info(request):
 		phone_number = request.POST.get('number','')
 		category_id = request.POST.get('category','')
 		category = Category.objects.get(pk=category_id)
-		note = request.POST.get('note','')
+		note = request.POST.get('description','')
 		information = Information.objects.create(user = user,image = image, gender = gender, category = category, born_date = born_date, phone_number = phone_number, note=note)
 		information.save()
 		return redirect(reverse('home:mainpage'))
@@ -106,7 +107,7 @@ def create_info(request):
 		args['slogan'] = slogans[randint(0,slogans.count()-1)]
 
 		return render_to_response('home/create_info.html',args)
-"""
+
 """
 @login_required(login_url=reverse('main:signin'))
 def modify_info(request):
@@ -310,7 +311,6 @@ def list_workers(request,category_id = -1):
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
 	#if hasattr(request.user, 'information'):
-
 	try:
 		int(category_id)
 	except Exception, e:
@@ -329,7 +329,7 @@ def list_workers(request,category_id = -1):
 	args['categories'] = categories
 	args['slogan'] = slogans[0]
 	# args['user'] = request.user
-	return render_to_response('home/list_workers.html',args)
+	return render_to_response('home/list_of_workers.html',args)
 	#if user hase not registered yet
 	#return redirect(reverse('home:create_info'))
 
@@ -337,8 +337,6 @@ def look_profile(request, worker_id):
 	#init variables
 	args={}
 	slogans = Slogan.objects.all()
-
-	
 	args['user'] = request.user
 	try:
 		int(worker_id)

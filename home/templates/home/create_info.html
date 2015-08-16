@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load mathfilters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +44,10 @@
                             <li>
                                 <a href="{%url 'home:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a>
                             </li>
+
                             <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
                             <!--<li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>-->
-                            <li> <a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Исполнители</a></li>
                         </ul>
                        
                     </div>
@@ -58,10 +59,7 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="">
                         <ul id="nav" class="nav navbar-nav">
-                        <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                        <li><a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас</a></li>
-                        <li><a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Обратная связь</a></li>
-                        <li><a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Как стать исполнителем</a></li>
+                        <li><a data-toggle="modal" data-target="#signout" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Выйти</a></li>
                         </ul>
                         
                         <!--<a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Войти</span> </a>
@@ -101,44 +99,82 @@
         </div><!--/.owl-carousel-->
     </section><!--/#main-slider-->
 
-    <section id="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-            <br>
-                <img height="300" width="300" class="images" src="../../../media/{{worker.information.image}}" alt='surot1'>
-                <!--
-                <p><strong>Навыки: </strong>
-                   {% for skill in worker.information.skillofuser_set.all %}
-                      <span class="label label-info tags">{{ skill.skill.title }}</span>
-                   {%endfor%}
-                </p>-->
-                
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <h2>{{worker.first_name}} {{worker.last_name}}</h2>
-                <p><strong>Пол </strong> :
-                {% if worker.information.gender == 'FEMALE'%}
-                Женский
-                {% else %}
-                Мужской
-                {% endif %}
-                </p>
-                <p><strong>Возраст </strong> : {{worker.information.age}} лет</p>
-                <p><strong>Вид деятельности: </strong>
-                   {{worker.information.category.title}}
-                </p>
+    <section id="about" class="home-section color-dark bg-white">
+        <div class="container marginbot-50">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    
+                    <div class="section-heading text-center">
+                    <h2 class="h-bold">Пожалуйста завершите регистрацию</h2>
+                    <hr>
+                    <div class="divider-header"></div>
+                    
+                    </div>
+                    <form action="{% url 'home:create_info'%}" method="POST" role="form">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label for="born">Дата рождения * :</label>
+                            <input type="date" class="form-control" name="born" required id="born" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="number">Номер телефона * :</label>
+                            <input type="tel" class="form-control" name="number" id="number" placeholder="введите номер телефона" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gender">Пол:</label><br>
+                            <input type="radio"  value = 'MALE' name="gender" checked="" >Мужской<br>
+                            <input type="radio" value = 'FEMALE' name="gender" >Женский
+                        </div>
+
+                        <div class="form-group">
+                        <label for="gender">Вид деятельности * :</label><br>
+                            <select required name="category" class="form-control">
+                                <option value="" disabled selected="">Не выбрано</option>
+                                {% for category in categories %}
+                                    <option value="{{category.id}}"><strong>{{category.title}}</strong></option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <label for="description">Напишите о себе</label><br>
+                            <textarea required name="description" id="description" class="form-control" rows = "4" placeholder="например: Женат , раньше работал где то где то" form="add_job_form"></textarea>
+                        <div class="form-group">
+                            <label for="image">Фото:</label>
+                            <input type="file" class="form-control" name="image" id="image">
+                        </div>
+                        <div class="span7 text-center">
+                            <input type='submit' value='завершить регистрацию'  class="btn btn-primary btn-lg btn-block" role="button">
+                        </div>
+                        <br><br><hr><br><br><br><br>
+                    </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <hr>
+        </section>
+
+
+
+    <!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
-    </section>
 
-
-    
-    
-    
 
     <footer id="footer">
         <div class="container">

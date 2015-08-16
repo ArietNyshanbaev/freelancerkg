@@ -11,17 +11,15 @@
     <title>JumuwBar.kg</title>
 	
     <!-- css -->
-    <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
-    
-	<link href="{% static 'css/nivo-lightbox.css'%}" rel="stylesheet" />
-	<link href="{% static 'css/nivo-lightbox-theme/default/default.css'%}" rel="stylesheet" type="text/css" />
-	<link href="{% static 'css/owl.carousel.css'%}" rel="stylesheet" media="screen" />
-    <link href="{% static 'css/owl.theme.css'%}" rel="stylesheet" media="screen" />
-	<link href="{% static 'css/flexslider.css'%}" rel="stylesheet" />
-	<link href="{% static 'css/animate.css'%}" rel="stylesheet" />
-    <link href="{% static 'css/style.css'%}" rel="stylesheet">
-	<link href="{% static 'color/default.css'%}" rel="stylesheet">
+    <link href="{% static 'css/new_style/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new_style/responsive.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=cyrillic' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -29,49 +27,64 @@
 	
 	
 	
-    <!-- Navigation -->
-    <div id="navigation">
-        <nav class="navbar navbar-custom" role="navigation">
-                              <div class="container">
-                                    <div class="row">
-                                          <div class="col-md-2">
-                                                   <div class="site-logo">
-                                                            <a href="{% url 'main:mainpage'%}" class="brand">Jumuwbar.Kg</a>
-                                                    </div>
-                                          </div>
-                                          
+    <header id="top-header" class="navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
 
-                                          <div class="col-md-10">
-                         
-                                                      <!-- Brand and toggle get grouped for better mobile display -->
-                                          <div class="navbar-header">
-                                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                                                <i class="fa fa-bars"></i>
-                                                </button>
-                                          </div>
-                                                      <!-- Collect the nav links, forms, and other content for toggling -->
-                                                      <div class="collapse navbar-collapse" id="menu">
-                                                            <ul class="nav navbar-nav navbar-right">
-                                                                  <li class="active"><a href="{% url 'main:signin'%}">войти</a></li>
-                                                            </ul>
-                                                      </div>
-                                                      <!-- /.Navbar-collapse -->
-                             
-                                          </div>
-                                    </div>
-                              </div>
-                              <!-- /.container -->
-                        </nav>
-    </div> 
-    <!-- /Navigation -->  
+                <nav class="collapse navbar-collapse navbar-left" role="navigation">
+                    <div class="">
+                        <ul id="" class="nav navbar-nav">
+                             <li><a href="{%url 'home:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a></li>
+                            <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                            <!--<li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>-->
+                            <li class="scroll"><a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Исполнители</a></li>
+                        </ul>
+                        
+                    </div>
+                </nav>
+                    
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="">
+                        <ul id="nav" class="nav navbar-nav">
+                        <li><a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас</a></li>
+                        <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                        <li><a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Обратная связь</a></li>
+                        <!--<li><a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Войти</a></li>-->
+                        <li><a href="{% url 'main:signin'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Войти</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+            </div>
+        </header>
+
+    {% if success_message%}
+            <div class="alert alert-success text-center" role="alert">
+            <br>
+            <h5>{{success_message}}</h5>
+            </div>
+    {% endif %}
 
 	<!-- Section: about -->
-    <section id="about" class="home-section color-dark bg-white
+	<br><br>
+    <section id="about_signin" class="home-section color-dark bg-white
     ">
 		<div class="container marginbot-50">
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">
-					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+					<div>
 					<div class="section-heading text-center">
 					<h2 class="h-bold">Регистрация</h2>
 					<hr>
@@ -132,7 +145,7 @@
 			</div>
 
 		</div>
-
+		<!--
 		<div class="container">
 		<p class="text-center">Статистика <strong>JumuwBar</strong> за этот месяц</p>
 		<br>
@@ -172,11 +185,12 @@
 		</div>
 
 	</section>
+	-->
 	<!-- /Section: about -->
 	
 	
 	<!-- Section: services -->
-    <section id="service" class="home-section color-dark bg-gray">
+    <!--<section id="service" class="home-section color-dark bg-gray">
 		<div class="container marginbot-50">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
@@ -266,6 +280,7 @@
 		</div>
 		</div>
 	</section>
+	-->
 	<!-- /Section: services -->
 	
 
@@ -308,7 +323,7 @@
 	</section> -->
 	<!-- /Section: works -->
 
-	<!-- Section: contact -->
+	<!-- Section: contact 
     <section id="contact" class="home-section nopadd-bot color-dark bg-gray text-center">
 		<div class="container marginbot-50">
 			<div class="row">
@@ -357,25 +372,31 @@
 
 
 		</div>
-	</section>
+	</section>-->
 	<!-- /Section: contact -->
 
 
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					
-					<div class="text-center">
-						<a href="#about" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
-
-						<p><br />
-						&copy;Copyright 2015 - JumuwBar. Ariet Nyshanbaev</p>
-					</div>
-				</div>
-			</div>	
-		</div>
-	</footer>
+	<footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        &copy; Jumushbar 2015.</a>
+                    </p>
+                    <br>
+                    <p class="text-center">
+                        Мы в социальных сетях</a>
+                    </p>
+                    
+                    <ul class="social-icons text-center">
+                        <li><a href="" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="" target="_blank"><i class="fa fa-vk fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
 
     <!-- Core JavaScript Files -->
     <script src="{% static 'js/jquery.min.js'%}"></script>	 

@@ -23,7 +23,7 @@ def mainpage(request):
 	else:
 		args['slogan'] = Slogan.objects.get(pk=1) 
 		return render_to_response('main/feedback.html',args)
-"""
+
 def signin(request):
 	if request.user.is_authenticated():
 		return redirect(reverse("home:mainpage"))
@@ -82,7 +82,7 @@ def signup(request):
 			args['first_name'] = first_name
 		if len(last_name) < 2 :
 		#last_name validation
-			args['last_name_error'] = 'Слишком короткая фамилия '
+			args['last_name_error'] = 'Слишком короткая фамилия'
 			validation = False
 			args['last_name'] = last_name
 		else:
@@ -127,4 +127,4 @@ def signup(request):
 
 	else:
 		return render_to_response('main/signup.html',args)
-"""
+
