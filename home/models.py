@@ -54,7 +54,7 @@ class Information(models.Model):
 	note = models.CharField('информация о пользователе', max_length=3000, null=True, blank=True)
 	note_for_us = models.CharField('информация о для нас', max_length=3000, null=True, blank=True)
 	note_of_pirces = models.CharField('информация о делах и ценах', max_length=3000, null=True, blank=True)
-	age = models.IntegerField('возраст', null=True, blank=True)
+	
 
 
 	class Meta:
