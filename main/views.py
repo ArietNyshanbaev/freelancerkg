@@ -54,7 +54,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect(reverse('main:mainpage'))
+    return redirect(reverse('home:mainpage'))
 
 def signup(request):
 	if request.user.is_authenticated():
