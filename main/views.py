@@ -68,7 +68,6 @@ def signup(request):
 	if request.POST:
 		first_name = request.POST.get('firstname','')
 		last_name = request.POST.get('lastname','')
-		username = request.POST.get('username','')
 		password1 = request.POST.get('password','')
 		password2 = request.POST.get('password1','')
 		email = request.POST.get('email','')
@@ -87,17 +86,6 @@ def signup(request):
 			args['last_name'] = last_name
 		else:
 			args['last_name'] = last_name
-		#username validation
-		if len(username) > 2:
-			username_in_use = all_users.filter(username__iexact=username)
-			if username_in_use.count() > 0:
-				validation = False
-				args['username_error'] = 'Этот логин уже занят,выберите другой'
-				args['username'] = username
-			else:
-				args['username'] = username
-		else:
-			args['username_error'] = 'Слишком короткий логин'
 		#password validation
 		if len(password1) < 6 or len(password2) < 6:
 			validation = False
@@ -115,7 +103,7 @@ def signup(request):
 			return render_to_response('main/signup.html', args)
 
 		if password1 == password2:
-			user = User.objects.create_user(username, email, password1)
+			user = User.objects.create_user(email, email, password1)
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
