@@ -41,6 +41,7 @@ class Information(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
+    id = models.AutoField(primary_key=True)
 	user = models.ForeignKey(User, verbose_name='пользователь')
 	image = models.ImageField('фото', upload_to = 'media', null=True, blank=True)
 	gender = models.CharField('пол', max_length=2,
