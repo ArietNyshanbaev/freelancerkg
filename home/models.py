@@ -41,7 +41,6 @@ class Information(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
-    id = models.AutoField(primary_key=True)
 	user = models.ForeignKey(User, verbose_name='пользователь')
 	image = models.ImageField('фото', upload_to = 'media', null=True, blank=True)
 	gender = models.CharField('пол', max_length=2,
@@ -56,6 +55,7 @@ class Information(models.Model):
 	note_for_us = models.CharField('информация о для нас', max_length=3000, null=True, blank=True)
 	note_of_prices = models.CharField('информация о делах и ценах', max_length=3000, null=True, blank=True)
 	just_in_case = models.CharField('на всякий случай', max_length=3000, null=True, blank=True)
+	id = models.AutoField(primary_key=True)
 	
 
 
