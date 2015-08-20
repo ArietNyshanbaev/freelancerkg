@@ -41,8 +41,7 @@ class Information(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
-	user = models.OneToOneField(User, primary_key=True, verbose_name='пользователь')
-	
+	user = models.ForeignKey(User, verbose_name='пользователь')
 	image = models.ImageField('фото', upload_to = 'media', null=True, blank=True)
 	gender = models.CharField('пол', max_length=2,
                                       choices=GENDER_CHOICE,
