@@ -10,7 +10,6 @@
     <title>JumushBar.kg</title>
 	<!-- core CSS -->
     <link href="{% static 'css/new_style/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/new_style/font-awesome.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/owl.carousel.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/owl.transitions.css' %}" rel="stylesheet">
@@ -21,6 +20,7 @@
     <link href="{% static 'css/demo-input.css' %}" rel="stylesheet">
     <link href="{% static 'css/component-input.css' %}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head><!--/head-->
 
 <body id="home" class="homepage">
@@ -42,12 +42,12 @@
                     <div class="">
                         <ul id="nav" class="nav navbar-nav">
                             <li>
-                                <a href="{%url 'home:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a>
+                                <a href="{%url 'home:mainpage'%}" style="float:left; font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a>
                             </li>
-
                             <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
                             <!--<li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>-->
+                            <li> <a href="{%url 'home:list_workers'%}" class="menu-nav">Исполнители</a></li>
                         </ul>
                        
                     </div>
@@ -59,13 +59,23 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="">
                         <ul id="nav" class="nav navbar-nav">
-                        <li><a href="{% url 'main:signout'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Выйти</a></li>
+                        <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                        <li><a href="{% url 'home:mainpage'%}#about" class="menu-nav">О нас</a></li>
+                        <li><a href="{% url 'main:mainpage'%}" class="menu-nav">Обратная связь</a></li>
+                        {% if user.username %}
+                            <li><a href="{% url 'home:create_info'%}" class="menu-nav">Как стать исполнителем</a></li>
+                            <li><a href="{% url 'main:signout'%}" class="menu-nav">Выйти</a></li>
+                        {% else %}
+                            <li><a href="{% url 'main:signin'%}" class="menu-nav">Войти</a></li>
+                            <li><a href="{% url 'main:signup'%}" class="menu-nav">Регистрация</a></li>
+                        {% endif %}
                         </ul>
                         
                         <!--<a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Войти</span> </a>
                         <a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;"><span id="contact" style=" line-height: 48px;padding: 10px 15px;text-decoration: none;background: transparent;">Регистрация</span> </a>-->
                     </div>
                 </nav>
+                <!-- /main nav -->
                 <!-- /main nav -->
             </div>
         </header>
@@ -140,6 +150,10 @@
                         <div class="form-group">
                         <label for="description">Напишите о себе</label><br>
                             <textarea required name="description" id="description" class="form-control" rows = "4" placeholder="например: Женат , раньше работал где то где то"></textarea>
+                        </div>
+                         <div class="form-group">
+                        <label for="description">Напишите о минимальной цене за работу</label><br>
+                            <textarea required name="description" id="description_job_price" class="form-control" rows = "4" placeholder="например: установка стиральной машины : 500 сом , замена труб отопления : 750 сом"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="image">Фото:</label>

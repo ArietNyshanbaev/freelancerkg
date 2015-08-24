@@ -12,7 +12,6 @@
 	
     <!-- css -->
     <link href="{% static 'css/new_style/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/new_style/font-awesome.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/owl.carousel.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/owl.transitions.css' %}" rel="stylesheet">
@@ -20,6 +19,7 @@
     <link href="{% static 'css/new_style/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/new_style/responsive.css' %}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 </head>
 
@@ -42,11 +42,11 @@
                 <nav class="collapse navbar-collapse navbar-left" role="navigation">
                     <div class="">
                         <ul id="" class="nav navbar-nav">
-                             <li><a href="{%url 'home:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight:400; font-size: 16px;"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a></li>
+                             <li><a href="{%url 'home:mainpage'%}" class="menu-nav"><img height="35" src="{% static 'images/jumushbar1.png'%}"></a></li>
                             <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
                             <!--<li class="scroll"><a href=""  style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Все задания</a></li>-->
-                            <li class="scroll"><a href="{%url 'home:list_workers'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Исполнители</a></li>
+                            <li class="scroll"><a href="{%url 'home:list_workers'%}" class="menu-nav">Исполнители</a></li>
                         </ul>
                         
                     </div>
@@ -58,11 +58,11 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="">
                         <ul id="nav" class="nav navbar-nav">
-                        <li><a href="{% url 'home:mainpage'%}#about" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">О нас</a></li>
+                        <li><a href="{% url 'home:mainpage'%}#about" class="menu-nav">О нас</a></li>
                         <li><a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                        <li><a href="{% url 'main:mainpage'%}" style="font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Обратная связь</a></li>
+                        <li><a href="{% url 'main:mainpage'%}" class="menu-nav">Обратная связь</a></li>
                         <!--<li><a href="" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Войти</a></li>-->
-                        <li><a href="{% url 'main:signup'%}" style=" font-family: 'Museo Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px;">Регистрация</a></li>
+                        <li><a href="{% url 'main:signup'%}" class="menu-nav">Регистрация</a></li>
                         </ul>
                     </div>
                 </nav>

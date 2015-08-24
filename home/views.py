@@ -23,11 +23,9 @@ def mainpage(request):
 	args={}
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
+
 	message = "JB:"
 	#if user have complated registration
-	if request.user.is_authenticated():
-		if not hasattr(request.user, 'information'):
-			return redirect(reverse('home:create_info'))
 
 	if request.POST:
 		name = request.POST.get('name', '')
@@ -49,6 +47,8 @@ def mainpage(request):
 		
 
 	# the method is get
+	user = request.user
+	args['user'] = user
 	args['categories'] = Category.objects.all()
 	args['slogan'] = slogans[0]
 	return render_to_response('home/main.html',args)
@@ -61,6 +61,8 @@ def add_task(request):
 
 	args['categories'] = Category.objects.all()
 	args['slogan'] = slogans[0]
+	user = request.user
+	args['user'] = user
 
 	return render_to_response('home/add_job.html',args)
 	
@@ -85,9 +87,9 @@ def create_info(request):
 	args={}
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
+	user = request.user
+	args['user'] = user
 	#if user have complated registration
-	if hasattr(request.user, 'information'):
-		return redirect(reverse('home:mainpage'))
 	if request.POST:
 		user = request.user
 		image = request.POST.get('image','')
@@ -97,7 +99,8 @@ def create_info(request):
 		category_id = request.POST.get('category','')
 		category = Category.objects.get(pk=category_id)
 		note = request.POST.get('description','')
-		information = Information.objects.create(user = user,image = image, gender = gender, category = category, born_date = born_date, phone_number = phone_number, note=note)
+		note_of_prices = request.POST.get('description_job_price','')
+		information = Information.objects.create(user = user,image = image, gender = gender, category = category, born_date = born_date, phone_number = phone_number, note=note, note_of_prices=note_of_prices)
 		information.save()
 		return redirect(reverse('home:mainpage'))
 	else:
@@ -105,6 +108,7 @@ def create_info(request):
 		args['categories'] = categories
 		args['user'] = request.user
 		args['slogan'] = slogans[randint(0,slogans.count()-1)]
+
 
 		return render_to_response('home/create_info.html',args)
 
@@ -310,6 +314,8 @@ def list_workers(request,category_id = -1):
 	args = {}
 	slogans = Slogan.objects.all()
 	args.update(csrf(request))
+	user = request.user
+	args['user'] = user
 	#if hasattr(request.user, 'information'):
 	try:
 		int(category_id)
@@ -335,6 +341,8 @@ def list_workers(request,category_id = -1):
 
 def look_profile(request, worker_id):
 	#init variables
+	user = request.user
+	args['user'] = user
 	args={}
 	slogans = Slogan.objects.all()
 	args['user'] = request.user

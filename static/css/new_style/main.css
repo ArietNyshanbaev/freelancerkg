@@ -7,7 +7,11 @@ Author URL:
 */
 
 
-
+.menu-nav{
+  font-family: 'Museo Sans', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
 .subheading {
     font-size: 24px;
     line-height: 1.1, display: block;
