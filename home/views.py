@@ -354,7 +354,6 @@ def look_profile(request, worker_id):
 		raise Http404
 	
 	worker = get_object_or_404(Information, pk=worker_id)
-	worker = worker.user
 	args['worker'] = worker
 	args['slogan'] = slogans[0]
 	#owned_skills = worker.information.skillofuser_set.all().order_by('-experience')

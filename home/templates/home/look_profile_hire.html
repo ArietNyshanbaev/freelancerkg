@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-md-4">
             <br>
-                <img height="300" width="300" class="images" src="../../../media/{{worker.information.image}}" alt='surot1'>
+                <img height="300" width="300" class="images" src="../../../media/{{worker.image}}" alt='surot1'>
                 <!--
                 <p><strong>Навыки: </strong>
                    {% for skill in worker.information.skillofuser_set.all %}
@@ -123,20 +123,20 @@
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-6">
-                <h2>{{worker.first_name}} {{worker.last_name}}</h2>
+                <h2>{{worker.user.first_name}} {{worker.user.last_name}}</h2>
                 <p><strong>Пол </strong> :
-                {% if worker.information.gender == 'FEMALE'%}
+                {% if worker.gender == 'FEMALE'%}
                     Женский
                 {% else %}
                     Мужской
                 {% endif %}
                 </p>
-                <p><strong>Дата рождения </strong> : {{worker.information.born_date}}</p>
+                <p><strong>Дата рождения </strong> : {{worker.born_date}}</p>
                 <p><strong>Вид деятельности: </strong>
-                   {{worker.information.category.title}}
+                   {{worker.category.title}}
                 </p>
-                <p><strong>О себе </strong> : {{worker.information.note}}</p>
-                <p><strong>Навыки и ценах </strong> : {{worker.information.note_of_prices}}</p>
+                <p><strong>О себе </strong> : {{worker.note}}</p>
+                <p><strong>Навыки и цены </strong> : {{worker.note_of_prices}}</p>
             </div>
         </div>
         <hr>
