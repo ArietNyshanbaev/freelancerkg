@@ -126,15 +126,17 @@
                 <h2>{{worker.first_name}} {{worker.last_name}}</h2>
                 <p><strong>Пол </strong> :
                 {% if worker.information.gender == 'FEMALE'%}
-                Женский
+                    Женский
                 {% else %}
-                Мужской
+                    Мужской
                 {% endif %}
                 </p>
-                <p><strong>Возраст </strong> : {{worker.information.age}} лет</p>
+                <p><strong>Дата рождения </strong> : {{worker.information.born_date}}</p>
                 <p><strong>Вид деятельности: </strong>
                    {{worker.information.category.title}}
                 </p>
+                <p><strong>О себе </strong> : {{worker.information.note}}</p>
+                <p><strong>Навыки и ценах </strong> : {{worker.information.note_of_prices}}</p>
             </div>
         </div>
         <hr>

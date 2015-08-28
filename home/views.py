@@ -340,7 +340,9 @@ def list_workers(request,category_id = -1):
 	#return redirect(reverse('home:create_info'))
 
 def look_profile(request, worker_id):
+
 	#init variables
+	args = {}
 	user = request.user
 	args['user'] = user
 	args={}
